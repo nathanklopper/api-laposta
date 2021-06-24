@@ -690,7 +690,7 @@ $result = $list->delete('BaImMu3JZA', 'members');
 <tr><td class="var">tag:</td><td class="explanation">The relation variable for usage in campaigns (not changeable)</td></tr>
 <tr><td class="var">custom_name:</td><td class="explanation">Name of the field (for use in member API calls)</td></tr>
 <tr><td class="var">defaultvalue:</td><td class="explanation">The default value (will be used in the absence of this field)</td></tr>
-<tr><td class="var">datatype:</td><td class="explanation">The datatype of the field in question (<code>text</code>, <code>numeric</code>, <code>date</code>, <code>select_single</code>, <code>select_multiple</code>)</td></tr>
+<tr><td class="var">datatype:</td><td class="explanation">The data type of the field in question (<code>text</code>, <code>numeric</code>, <code>date</code>, <code>select_single</code>, <code>select_multiple</code>)</td></tr>
 <tr><td class="var">datatype_display:</td><td class="explanation">Only applicable for select_single: the desired display (<code>select</code>, <code>radio</code>)</td></tr>
 <tr><td class="var">options:</td><td class="explanation">An array of the available options (only for <code>select_single</code> or <code>select_multiple</code>)</td></tr>
 <tr><td class="var">options_full:</td><td class="explanation">An array of the available options, including IDs (alleen bij <code>select_single</code> or <code>select_multiple</code>)</td></tr>
@@ -731,15 +731,15 @@ $result = $list->delete('BaImMu3JZA', 'members');
 <p>If there is something wrong with the parameters provided, a code is displayed with the error message. See above under 'Error messages' what the codes stand for.</p>
 <h4>Parameters</h4>
 <table class="vars">
-<tr><td class="var">list_id <span class="required">(verplicht)</span>:</td><td class="explanation">The ID of the list to which the field belongs</td></tr>
-<tr><td class="var">name <span class="required">(verplicht)</span>:</td><td class="explanation">A name for this field</td></tr>
+<tr><td class="var">list_id <span class="required">(manditory)</span>:</td><td class="explanation">The ID of the list to which the field belongs</td></tr>
+<tr><td class="var">name <span class="required">(manditory)</span>:</td><td class="explanation">A name for this field</td></tr>
 <tr><td class="var">defaultvalue:</td><td class="explanation">A potential default value</td></tr>
-<tr><td class="var">datatype <span class="required">(verplicht)</span>:</td><td class="explanation">The datatype: <code>text</code>, <code>numeric</code>, <code>date</code>, <code>select_single</code> or <code>select_multiple</code></td></tr>
+<tr><td class="var">datatype <span class="required">(manditory)</span>:</td><td class="explanation">The data type: <code>text</code>, <code>numeric</code>, <code>date</code>, <code>select_single</code> or <code>select_multiple</code></td></tr>
 <tr><td class="var">datatype_display:</td><td class="explanation">Only applicable for select_single: the desired display (<code>select</code>, <code>radio</code>)</td></tr>
-<tr><td class="var">options:</td><td class="explanation">What selection options are available? (Manditory for the datatypes <code>select_single</code> of <code>select_multiple</code>). The options can be given as an array. In the answer the options are repeated, but there is also an extra field <code>options_full</code>. Also listed are the option IDs, which may eventually be used to change the options later.</td></tr>
-<tr><td class="var">required <span class="required">(verplicht)</span>:</td><td class="explanation">Is this a manditory field?</td></tr>
-<tr><td class="var">in_form <span class="required">(verplicht)</span>:</td><td class="explanation">Does this field occur in the subscription form? (<code>boolean</code>)</td></tr>
-<tr><td class="var">in_list <span class="required">(verplicht)</span>:</td><td class="explanation">Is this field visible in Laposta's overview? (<code>boolean</code>)</td></tr>
+<tr><td class="var">options:</td><td class="explanation">What selection options are available? (Manditory for the data types <code>select_single</code> of <code>select_multiple</code>). The options can be given as an array. In the answer the options are repeated, but there is also an extra field <code>options_full</code>. Also listed are the option IDs, which may eventually be used to change the options later.</td></tr>
+<tr><td class="var">required <span class="required">(manditory)</span>:</td><td class="explanation">Is this a manditory field?</td></tr>
+<tr><td class="var">in_form <span class="required">(manditory)</span>:</td><td class="explanation">Does this field occur in the subscription form? (<code>boolean</code>)</td></tr>
+<tr><td class="var">in_list <span class="required">(manditory)</span>:</td><td class="explanation">Is this field visible in Laposta's overview? (<code>boolean</code>)</td></tr>
 </table>
 </td><!-- /left -->
 
@@ -839,8 +839,8 @@ field = fieldService.Create(field);
 <p>All information about a field.</p>
 <h4>Parameters</h4>
 <table class="vars">
-<tr><td class="var">list_id <span class="required">(verplicht)</span>:</td><td class="explanation">The ID of the list to which the field belongs</td></tr>
-<tr><td class="var">field_id <span class="required">(verplicht)</span>:</td><td class="explanation">The ID of the requestable field</td></tr>
+<tr><td class="var">list_id <span class="required">(manditory)</span>:</td><td class="explanation">The ID of the list to which the field belongs</td></tr>
+<tr><td class="var">field_id <span class="required">(manditory)</span>:</td><td class="explanation">The ID of the requestable field</td></tr>
 </table>
 </td><!-- /left -->
 
@@ -892,32 +892,32 @@ field = fieldService.Get("gt2Em8vJwi");
 
 <tr>
 <td class="left continue">
-<h3>Veld wijzigen</h3>
-<p>U hoeft alleen de velden die gewijzigd moeten worden in de aanvraag mee te sturen. Velden die niet worden genoemd houden hun huidige waarde. Zodra een veld wordt genoemd wordt het wel gecontroleerd, en kan dus voor een foutmelding zorgen. Bij deze foutmelding wordt een code weergegeven met een melding. Zie hierboven bij Foutmeldingen wat de codes betekenen.</p>
-<p class="info">Let op: het wijzigen van het datatype verwijderd alle gegevens uit het betreffende veld.</p>
+<h3>Editing fields</h3>
+<p>You only have to include the fields that need to be changed in the application. Unnamed fields keep their current values. Once a field is mentioned it does get checked, and thus can cause an error message. This error message displays a code with a message. See above under 'Error messages' what the codes stand for.</p>
+<p class="info">Please note that changing the data type removes all data from the field in question.</p>
 <h4>Parameters</h4>
 <table class="vars">
-<tr><td class="var">list_id <span class="required">(verplicht)</span>:</td><td class="explanation">Het id van de lijst waartoe het veld behoort</td></tr>
-<tr><td class="var">name:</td><td class="explanation">Een naam voor dit veld</td></tr>
-<tr><td class="var">datatype:</td><td class="explanation">Het datatype van dit veld (<code>text</code>, <code>numeric</code>, <code>date</code>, <code>select_single</code>, <code>select_multiple</code>)</td></tr>
-<tr><td class="var">datatype_display:</td><td class="explanation">Alleen voor select_single: de gewenste weergave (<code>select</code>, <code>radio</code>)</td></tr>
-<tr><td class="var">options:</td><td class="explanation">Welke selectiemogelijkheden zijn er? Array met alleen de waardes. Let op: deze lijst vervangt in zijn geheel de bestaande options; voor het wijzigen van velden die al in gebruik zijn is het beter <code>options_full</code> te gebruiken. (Alleen mogelijk bij datatypes <code>select_single</code> of <code>select_multiple</code>)</td></tr>
-<tr><td class="var">options_full:</td><td class="explanation">Welke selectiemogelijkheden zijn er? Array met per optie zowel de waarde (<code>value</code>) als het id (<code>id</code>). Let op: deze lijst vervangt in zijn geheel de bestaande options. Als id's overeenkomen wordt de bijbehorende optie gewijzigd. (Alleen mogelijk bij datatypes <code>select_single</code> of <code>select_multiple</code>)</td></tr>
-<tr><td class="var">defaultvalue:</td><td class="explanation">Standaardwaarde (wordt gebruikt bij afwezigheid van dit veld)</td></tr>
-<tr><td class="var">required:</td><td class="explanation">Is dit een verplicht veld?</td></tr>
-<tr><td class="var">in_form:</td><td class="explanation">Is het veld te zien in het aanmeldformulier? (<code>boolean</code>)</td></tr>
-<tr><td class="var">in_list:</td><td class="explanation">Is het veld te zien in het overzicht in Laposta? (<code>boolean</code>)</td></tr>
+<tr><td class="var">list_id <span class="required">(manditory)</span>:</td><td class="explanation">The ID of the list to which the field belongs</td></tr>
+<tr><td class="var">name:</td><td class="explanation">A name for this field</td></tr>
+<tr><td class="var">datatype:</td><td class="explanation">The data type of this field (<code>text</code>, <code>numeric</code>, <code>date</code>, <code>select_single</code>, <code>select_multiple</code>)</td></tr>
+<tr><td class="var">datatype_display:</td><td class="explanation">Only applicable for select_single: the desired display (<code>select</code>, <code>radio</code>)</td></tr>
+<tr><td class="var">options:</td><td class="explanation">What selection options are available? Array with values only. Please note that this list replaces the existing options in its entirety. To modify fields already in use, it is preferable to use <code>options_full</code>. (Only possible for data types <code>select_single</code> or <code>select_multiple</code>)</td></tr>
+<tr><td class="var">options_full:</td><td class="explanation">What selection options are there? Array with per option both the value (<code>value</code>) and the ID (<code>ID</code>). Please note that this list replaces the existing options in its entirety. If IDs match, the corresponding option is changed. (Only possible for data types <code>select_single</code> of <code>select_multiple</code>)</td></tr>
+<tr><td class="var">defaultvalue:</td><td class="explanation">The default value (will be used in the absence of this field)</td></tr>
+<tr><td class="var">required:</td><td class="explanation">Is this a manditory field?</td></tr>
+<tr><td class="var">in_form:</td><td class="explanation">Does this field occur in the subscription form? (<code>boolean</code>)</td></tr>
+<tr><td class="var">in_list:</td><td class="explanation">Is this field visible in Laposta's overview? (<code>boolean</code>)</td></tr>
 </table>
 </td><!-- /left -->
 
 <td class="right continue">
-<h4>Definitie</h4>
+<h4>Definition</h4>
 <pre class="code">
 POST https://api.laposta.nl/v2/field/{field_id}
 </pre>
 
-<h4>Voorbeeld aanvraag</h4>
-<p class="info">Dit voorbeeld maakt het veld niet meer verplicht.</p>
+<h4>Example of request</h4>
+<p class="info">Dit voorbeeld maakt het veld niet meer manditory.</p>
 <pre class="code">
 <? if (empty($lib) || $lib == 'curl') { ?>
 $ curl https://api.laposta.nl/v2/field/hsJ5zbDfzJ \
@@ -970,8 +970,8 @@ field = fieldService.Update("hsJ5zbDfzJ", field);
 <p>Hiermee verwijdert u een veld definitief. Als het veld niet bestaat wordt een foutmelding gegeven. Als antwoord krijgt u weer een veld object, maar nu met state 'deleted'. Hierna is dit veld niet nogmaals op te vragen.</p>
 <h4>Parameters</h4>
 <table class="vars">
-<tr><td class="var">field_id <span class="required">(verplicht)</span>:</td><td class="explanation">Het id van het te verwijderen veld</td></tr>
-<tr><td class="var">list_id <span class="required">(verplicht)</span>:</td><td class="explanation">Het id van de lijst waartoe het veld behoort</td></tr>
+<tr><td class="var">field_id <span class="required">(manditory)</span>:</td><td class="explanation">Het id van het te verwijderen veld</td></tr>
+<tr><td class="var">list_id <span class="required">(manditory)</span>:</td><td class="explanation">Het id van de lijst waartoe het veld behoort</td></tr>
 </table>
 </td><!-- /left -->
 
@@ -1029,7 +1029,7 @@ field = fieldService.Delete("lxwc8OyD3a");
 <p>Alle velden van een lijst in een array van field objecten. De field objecten zijn opgenomen in een array met de naam 'data'.</p>
 <h4>Parameters</h4>
 <table class="vars">
-<tr><td class="var">list_id <span class="required">(verplicht)</span>:</td><td class="explanation">Het id van de lijst waarbij de velden horen</td></tr>
+<tr><td class="var">list_id <span class="required">(manditory)</span>:</td><td class="explanation">Het id van de lijst waarbij de velden horen</td></tr>
 </table>
 </td><!-- /left -->
 
@@ -1172,15 +1172,15 @@ fields = fieldService.All();
 <p>Als er iets niet klopt aan de meegegeven parameters dan wordt bij de foutmelding een code weergegeven. Deze kunt u in combinatie met de variabele 'parameter' gebruiken om een melding aan de gebruiker te tonen. Zie hierboven bij Foutmeldingen wat de codes betekenen.</p>
 <h4>Parameters</h4>
 <table class="vars">
-<tr><td class="var">list_id <span class="required">(verplicht)</span>:</td><td class="explanation">Het id van de lijst waaraan de relatie moet worden toegevoegd</td></tr>
-<tr><td class="var">ip <span class="required">(verplicht)</span>:</td><td class="explanation">Het IP-adres vanwaar de relatie is aangemeld</td></tr>
-<tr><td class="var">email <span class="required">(verplicht)</span>:</td><td class="explanation">Het e-mailadres van de toe te voegen relatie</td></tr>
+<tr><td class="var">list_id <span class="required">(manditory)</span>:</td><td class="explanation">Het id van de lijst waaraan de relatie moet worden toegevoegd</td></tr>
+<tr><td class="var">ip <span class="required">(manditory)</span>:</td><td class="explanation">Het IP-adres vanwaar de relatie is aangemeld</td></tr>
+<tr><td class="var">email <span class="required">(manditory)</span>:</td><td class="explanation">Het e-mailadres van de toe te voegen relatie</td></tr>
 <tr><td class="var">source_url:</td><td class="explanation">De URL vanwaar de relatie is aangemeld</td></tr>
 <tr><td class="var">custom_fields:</td><td class="explanation">De waardes van de extra aangemaakte velden</td></tr>
 <tr><td class="var">options:</td><td class="explanation">Extra aanwijzingen, mogelijkheden zijn: <code>suppress_email_notification: true</code> om te voorkomen dat bij elke aanmedling via een api een notificatiemailtje wordt verstuurd, <code>suppress_email_welcome: true</code> om te voorkomen dat de welkomstmail wordt verstuurd bij een aanmelding via de api, en <code>ignore_doubleoptin: true</code> om relaties bij een double-optin lijst meteen actief te maken en ervoor te zorgen dat er geen bevestigingsmail wordt verstuurd bij een aanmelding via de api.</td></tr>
 </table>
 <p class="info">Als het een double-optin lijst betreft dan wordt bij elke aanmelding een bevestigingsmail verstuurd, tenzij de optie 'ignore_doubleoptin' wordt meegegeven (zie hierboven).</p>
-<p class="info">Als er custom_fields zijn die verplicht zijn gesteld, is het vullen van deze velden via de API ook verplicht.</p>
+<p class="info">Als er custom_fields zijn die manditory zijn gesteld, is het vullen van deze velden via de API ook manditory.</p>
 </td><!-- /left -->
 
 <td class="right continue">
@@ -1266,8 +1266,8 @@ member = memberService.Create(member);
 <p>Alle informatie over een relatie in een member object.</p>
 <h4>Parameters</h4>
 <table class="vars">
-<tr><td class="var">list_id <span class="required">(verplicht)</span>:</td><td class="explanation">Het id van de lijst waarin de relatie voorkomt</td></tr>
-<tr><td class="var">member_id <span class="required">(verplicht)</span>:</td><td class="explanation">Het id OF het emailadres van de relatie</td></tr>
+<tr><td class="var">list_id <span class="required">(manditory)</span>:</td><td class="explanation">Het id van de lijst waarin de relatie voorkomt</td></tr>
+<tr><td class="var">member_id <span class="required">(manditory)</span>:</td><td class="explanation">Het id OF het emailadres van de relatie</td></tr>
 </table>
 </td><!-- /left -->
 
@@ -1326,7 +1326,7 @@ member = memberService.Get("9978ydioiZ");
 <p>U hoeft alleen de velden die gewijzigd moeten worden in de aanvraag mee te sturen. Velden die niet worden genoemd houden hun huidige waarde. Zodra een veld wordt genoemd wordt het wel gecontroleerd, en kan dus voor een foutmelding zorgen. Bij deze foutmelding wordt een code weergegeven. Deze kunt u in combinatie met de variabele 'parameter' gebruiken om een melding aan de gebruiker te tonen. Zie hierboven bij Foutmeldingen wat de codes betekenen.</p>
 <h4>Parameters</h4>
 <table class="vars">
-<tr><td class="var">list_id <span class="required">(verplicht)</span>:</td><td class="explanation">Het id van de lijst waaraan de relatie moet worden gewijzigd</td></tr>
+<tr><td class="var">list_id <span class="required">(manditory)</span>:</td><td class="explanation">Het id van de lijst waaraan de relatie moet worden gewijzigd</td></tr>
 <tr><td class="var">email:</td><td class="explanation">Het e-mailadres van de te wijzigen relatie</td></tr>
 <tr><td class="var">state</span>:</td><td class="explanation">De nieuwe status van de relatie: active of unsubscribed</td></tr>
 <tr><td class="var">custom_fields:</td><td class="explanation">De waardes van de extra aangemaakte velden</td></tr>
@@ -1372,7 +1372,7 @@ member = memberService.Update("9978ydioiZ", member);
 <? } ?>
 </pre>
 <p class="info">U kunt hier in plaats van het member_id ook het e-mailadres gebruiken.</p>
-<p class="info">Meerkeuze custom fields die niet verplicht zijn kunnen leeggemaakt worden door de variabele wel op te nemen in de aanvraag voor de wijziging, maar zonder waarde.</p>
+<p class="info">Meerkeuze custom fields die niet manditory zijn kunnen leeggemaakt worden door de variabele wel op te nemen in de aanvraag voor de wijziging, maar zonder waarde.</p>
 
 <h4>Voorbeeld antwoord</h4>
 <pre class="code">
@@ -1406,7 +1406,7 @@ member = memberService.Update("9978ydioiZ", member);
 <p>Hiermee verwijdert u een relatie definitief. Als de relatie niet bestaat wordt een foutmelding gegeven. Als antwoord krijgt u weer een member object, maar nu met state 'deleted'. Hierna is deze relatie niet nogmaals op te vragen.</p>
 <h4>Parameters</h4>
 <table class="vars">
-<tr><td class="var">list_id <span class="required">(verplicht)</span>:</td><td class="explanation">Het id van de lijst waarin de relatie voorkomt</td></tr>
+<tr><td class="var">list_id <span class="required">(manditory)</span>:</td><td class="explanation">Het id van de lijst waarin de relatie voorkomt</td></tr>
 </table>
 </td><!-- /left -->
 
@@ -1467,7 +1467,7 @@ member = memberService.Delete("9978ydioiZ");
 <p>Alle relaties in een array van member objecten. De member objecten zijn opgenomen in een array met de naam 'data'.</p>
 <h4>Parameters</h4>
 <table class="vars">
-<tr><td class="var">list_id <span class="required">(verplicht)</span>:</td><td class="explanation">Het id van de lijst waaraan de relaties opgevraagd worden</td></tr>
+<tr><td class="var">list_id <span class="required">(manditory)</span>:</td><td class="explanation">Het id van de lijst waaraan de relaties opgevraagd worden</td></tr>
 <tr><td class="var">state</span>:</td><td class="explanation">De status van de opgevraagde relaties: active, unsubscribed of cleaned</td></tr>
 </table>
 </td><!-- /left -->
@@ -1705,10 +1705,10 @@ Bij event <span class="code">deactivated</span>:
 <p>Als er iets niet klopt aan de meegegeven parameters dan wordt bij de foutmelding een code en een melding weergegeven. Zie hierboven bij Foutmeldingen wat de codes betekenen.</p>
 <h4>Parameters</h4>
 <table class="vars">
-<tr><td class="var">list_id <span class="required">(verplicht)</span>:</td><td class="explanation">Het id van de lijst waartoe het veld behoort</td></tr>
-<tr><td class="var">event <span class="required">(verplicht)</span>:</td><td class="explanation">Wanneer wordt de webhook aangeroepen? (<code>subscribed</code>, <code>modified</code> of <code>deactivated</code>)</td></tr>
-<tr><td class="var">url <span class="required">(verplicht)</span>:</td><td class="explanation">De aan te roepen url</td></tr>
-<tr><td class="var">blocked <span class="required">(verplicht)</span>:</td><td class="explanation">Is het aanroepen van de webhook (tijdelijk) geblokkeerd? (<code>true</code> of <code>false</code>)</td></tr>
+<tr><td class="var">list_id <span class="required">(manditory)</span>:</td><td class="explanation">Het id van de lijst waartoe het veld behoort</td></tr>
+<tr><td class="var">event <span class="required">(manditory)</span>:</td><td class="explanation">Wanneer wordt de webhook aangeroepen? (<code>subscribed</code>, <code>modified</code> of <code>deactivated</code>)</td></tr>
+<tr><td class="var">url <span class="required">(manditory)</span>:</td><td class="explanation">De aan te roepen url</td></tr>
+<tr><td class="var">blocked <span class="required">(manditory)</span>:</td><td class="explanation">Is het aanroepen van de webhook (tijdelijk) geblokkeerd? (<code>true</code> of <code>false</code>)</td></tr>
 </table>
 </td><!-- /left -->
 
@@ -1771,8 +1771,8 @@ webhook = webhookService.Create(webhook);
 <p>Alle informatie over een webhook.</p>
 <h4>Parameters</h4>
 <table class="vars">
-<tr><td class="var">list_id <span class="required">(verplicht)</span>:</td><td class="explanation">Het id van de lijst waarbij het veld hoort</td></tr>
-<tr><td class="var">webhook_id<span class="required">(verplicht)</span>:</td><td class="explanation">Het id van het op te vragen veld</td></tr>
+<tr><td class="var">list_id <span class="required">(manditory)</span>:</td><td class="explanation">Het id van de lijst waarbij het veld hoort</td></tr>
+<tr><td class="var">webhook_id<span class="required">(manditory)</span>:</td><td class="explanation">Het id van het op te vragen veld</td></tr>
 </table>
 </td><!-- /left -->
 
@@ -1822,8 +1822,8 @@ webhook = webhookService.Get("cW5ls8IVJl");
 <p>U hoeft alleen de velden die gewijzigd moeten worden in de aanvraag mee te sturen. Velden die niet worden genoemd houden hun huidige waarde. Zodra een veld wordt genoemd wordt het wel gecontroleerd, en kan dus voor een foutmelding zorgen. Bij deze foutmelding wordt een code weergegeven met een melding. Zie hierboven bij Foutmeldingen wat de codes betekenen.</p>
 <h4>Parameters</h4>
 <table class="vars">
-<tr><td class="var">list_id <span class="required">(verplicht)</span>:</td><td class="explanation">Het id van de lijst waartoe het veld behoort</td></tr>
-<tr><td class="var">webhook_id<span class="required">(verplicht)</span>:</td><td class="explanation">Het id van het op te vragen veld</td></tr>
+<tr><td class="var">list_id <span class="required">(manditory)</span>:</td><td class="explanation">Het id van de lijst waartoe het veld behoort</td></tr>
+<tr><td class="var">webhook_id<span class="required">(manditory)</span>:</td><td class="explanation">Het id van het op te vragen veld</td></tr>
 <tr><td class="var">event:</td><td class="explanation">Wanneer wordt de webhook aangeroepen? (<code>subscribed</code>, <code>modified</code> of <code>deactivated</code>)</td></tr>
 <tr><td class="var">url:</td><td class="explanation">De aan te roepen url</td></tr>
 <tr><td class="var">blocked:</td><td class="explanation">Is het aanroepen van de webhook (tijdelijk) geblokkeerd? (<code>true</code> of <code>false</code>)</td></tr>
@@ -1884,8 +1884,8 @@ webhook = webhookService.Update("iH52rJwguo", webhook);
 <p>Hiermee verwijdert u een webhook definitief. Eventuele uitstaande aanvragen van de webhook worden nog wel afgerond. Als een veld niet bestaat wordt een foutmelding gegeven. Als antwoord krijgt u weer een webhook object, maar nu met state 'deleted'. Hierna is de webhook niet nogmaals op te vragen.</p>
 <h4>Parameters</h4>
 <table class="vars">
-<tr><td class="var">webhook_id <span class="required">(verplicht)</span>:</td><td class="explanation">Het id van de te verwijderen webhook</td></tr>
-<tr><td class="var">list_id <span class="required">(verplicht)</span>:</td><td class="explanation">Het id van de lijst waartoe de webhook behoort</td></tr>
+<tr><td class="var">webhook_id <span class="required">(manditory)</span>:</td><td class="explanation">Het id van de te verwijderen webhook</td></tr>
+<tr><td class="var">list_id <span class="required">(manditory)</span>:</td><td class="explanation">Het id van de lijst waartoe de webhook behoort</td></tr>
 </table>
 </td><!-- /left -->
 
@@ -1937,7 +1937,7 @@ webhook = webhookService.Delete("8HdlEGtlml");
 <p>Alle webhooks van een lijst in een array van webhook objecten. De webhook objecten zijn opgenomen in een array met de naam 'data'.</p>
 <h4>Parameters</h4>
 <table class="vars">
-<tr><td class="var">list_id <span class="required">(verplicht)</span>:</td><td class="explanation">Het id van de lijst waarbij de webhooks horen</td></tr>
+<tr><td class="var">list_id <span class="required">(manditory)</span>:</td><td class="explanation">Het id van de lijst waarbij de webhooks horen</td></tr>
 </table>
 </td><!-- /left -->
 
@@ -2088,13 +2088,13 @@ webhooks = webhookService.All();
 <h3>Campagne aanmaken</h3>
 <h4>Parameters</h4>
 <table class="vars">
-<tr><td class="var">type <span class="required">(verplicht)</span>:</td><td class="explanation">Type campagne (moet zijn: <code>regular</code>)</td></tr>
-<tr><td class="var">name <span class="required">(verplicht)</span>:</td><td class="explanation">Een naam voor deze campagne, voor intern gebruik</td></tr>
-<tr><td class="var">subject <span class="required">(verplicht)</span>:</td><td class="explanation">De onderwerpregel</td></tr>
-<tr><td class="var">from[name] <span class="required">(verplicht)</span>:</td><td class="explanation">De naam van de afzender</td></tr>
-<tr><td class="var">from[email] <span class="required">(verplicht)</span>:</td><td class="explanation">Het e-mailadres van de afzender (dit moet een binnen het programma goedgekeurd afzendadres zijn)</td></tr>
+<tr><td class="var">type <span class="required">(manditory)</span>:</td><td class="explanation">Type campagne (moet zijn: <code>regular</code>)</td></tr>
+<tr><td class="var">name <span class="required">(manditory)</span>:</td><td class="explanation">Een naam voor deze campagne, voor intern gebruik</td></tr>
+<tr><td class="var">subject <span class="required">(manditory)</span>:</td><td class="explanation">De onderwerpregel</td></tr>
+<tr><td class="var">from[name] <span class="required">(manditory)</span>:</td><td class="explanation">De naam van de afzender</td></tr>
+<tr><td class="var">from[email] <span class="required">(manditory)</span>:</td><td class="explanation">Het e-mailadres van de afzender (dit moet een binnen het programma goedgekeurd afzendadres zijn)</td></tr>
 <tr><td class="var">reply_to:</td><td class="explanation">Het e-mailadres bij beantwoorden</td></tr>
-<tr><td class="var">list_ids <span class="required">(verplicht)</span>:</td><td class="explanation">Ontvangers, array van list_id's</td></tr>
+<tr><td class="var">list_ids <span class="required">(manditory)</span>:</td><td class="explanation">Ontvangers, array van list_id's</td></tr>
 <tr><td class="var">stats[ga]:</td><td class="explanation">Koppel Google Analytics (<code>true</code> of <code>false</code>)</td></tr>
 <tr><td class="var">stats[mtrack]:</td><td class="explanation">Koppel Mtrack (<code>true</code> of <code>false</code>)</td></tr>
 </table>
@@ -2190,7 +2190,7 @@ $result = $campaign->create(array(
 <p>Alle informatie over een campagne.</p>
 <h4>Parameters</h4>
 <table class="vars">
-<tr><td class="var">campaign_id <span class="required">(verplicht)</span>:</td><td class="explanation">Het id van de campagne</td></tr>
+<tr><td class="var">campaign_id <span class="required">(manditory)</span>:</td><td class="explanation">Het id van de campagne</td></tr>
 </table>
 </td><!-- /left -->
 
@@ -2256,7 +2256,7 @@ $result = $campaign->get('njhgaf61ye');
 <p>U hoeft alleen de velden die gewijzigd moeten worden in de aanvraag mee te sturen. Velden die niet worden genoemd houden hun huidige waarde. Zodra een veld wordt genoemd wordt het wel gecontroleerd, en kan dus voor een foutmelding zorgen. Bij deze foutmelding wordt een code weergegeven met een melding. Zie hierboven bij Foutmeldingen wat de codes betekenen.</p>
 <h4>Parameters</h4>
 <table class="vars">
-<tr><td class="var">campaign_id <span class="required">(verplicht)</span>:</td><td class="explanation">Het id van de campagne die gewijzigd moet worden</td></tr>
+<tr><td class="var">campaign_id <span class="required">(manditory)</span>:</td><td class="explanation">Het id van de campagne die gewijzigd moet worden</td></tr>
 <tr><td class="var">name:</td><td class="explanation">Een naam voor deze campagne, voor intern gebruik</td></tr>
 <tr><td class="var">subject:</td><td class="explanation">De onderwerpregel</td></tr>
 <tr><td class="var">from[name]:</td><td class="explanation">De naam van de afzender</td></tr>
@@ -2336,7 +2336,7 @@ $result = $campaign->update('pbrqulw2tc', array(
 <p>Als antwoord krijgt u het campaign object, maar nu met state 'deleted'. Hierna is de campagne niet nogmaals op te vragen.</p>
 <h4>Parameters</h4>
 <table class="vars">
-<tr><td class="var">campaign_id <span class="required">(verplicht)</span>:</td><td class="explanation">Het id van de te verwijderen campagne</td></tr>
+<tr><td class="var">campaign_id <span class="required">(manditory)</span>:</td><td class="explanation">Het id van de te verwijderen campagne</td></tr>
 </table>
 </td><!-- /left -->
 
@@ -2509,7 +2509,7 @@ $result = $campaign->all();
 <p><i>Let op: dit kan alleen als het een campagne betreft die ge&iuml;mporteerd is, en niet bij een campagne die binnen de applicatie is gemaakt met de drag &amp; drop-editor.</i></p>
 <h4>Parameters</h4>
 <table class="vars">
-<tr><td class="var">campaign_id <span class="required">(verplicht)</span>:</td><td class="explanation">Het id van de campagne</td></tr>
+<tr><td class="var">campaign_id <span class="required">(manditory)</span>:</td><td class="explanation">Het id van de campagne</td></tr>
 </table>
 </td><!-- /left -->
 
@@ -2554,7 +2554,7 @@ $result = $campaign->get('pbrqulw2tc', 'content');
 <h4>Parameters</h4>
 <p>De campagne kan ofwel direct gevuld worden met html, ofwel via een url, waarbij Laposta de html importeert die op de opgegeven url te vinden is. Een van beide moet gekozen worden. Als beide parameters worden meegegeven dan wordt de html genomen.</p>
 <table class="vars">
-<tr><td class="var">campaign_id <span class="required">(verplicht)</span>:</td><td class="explanation">Het id van de campagne</td></tr>
+<tr><td class="var">campaign_id <span class="required">(manditory)</span>:</td><td class="explanation">Het id van de campagne</td></tr>
 <tr><td class="var">html:</td><td class="explanation">De html voor de campagne</td></tr>
 <tr><td class="var">import_url:</td><td class="explanation">De url vanwaar de html ge&iuml;mporteerd moet worden</td></tr>
 <tr><td class="var">inline_css:</td><td class="explanation">Eventueel inlinen van css (<code>true</code> of <code>false</code>)</td></tr>
@@ -2621,7 +2621,7 @@ $result = $campaign->update('pbrqulw2tc', array(
 <p>Een campagne direct versturen.</p>
 <h4>Parameters</h4>
 <table class="vars">
-<tr><td class="var">campaign_id <span class="required">(verplicht)</span>:</td><td class="explanation">Het id van de campagne</td></tr>
+<tr><td class="var">campaign_id <span class="required">(manditory)</span>:</td><td class="explanation">Het id van de campagne</td></tr>
 </table>
 <p>Ter info: een campagne die al eerder verzonden werd, kan ook opnieuw verzonden worden. De campagne wordt dan alleen gestuurd naar de adressen die er sinds de laatste verzending zijn bijgekomen.</p>
 </td><!-- /left -->
@@ -2689,8 +2689,8 @@ $result = $campaign->update('pbrqulw2tc', array(), 'action', 'send');
 <p>Een campagne inplannen voor een later moment.</p>
 <h4>Parameters</h4>
 <table class="vars">
-<tr><td class="var">campaign_id <span class="required">(verplicht)</span>:</td><td class="explanation">Het id van de campagne</td></tr>
-<tr><td class="var">delivery_requested <span class="required">(verplicht)</span>:</td><td class="explanation">Het moment van verzenden (formaat YYYY-MM-DD HH:MM:SS)</td></tr>
+<tr><td class="var">campaign_id <span class="required">(manditory)</span>:</td><td class="explanation">Het id van de campagne</td></tr>
+<tr><td class="var">delivery_requested <span class="required">(manditory)</span>:</td><td class="explanation">Het moment van verzenden (formaat YYYY-MM-DD HH:MM:SS)</td></tr>
 </table>
 <p>Ter info: een campagne die al eerder verzonden werd, kan ook opnieuw ingepland worden. De campagne wordt dan alleen verzonden naar de adressen die er sinds de laatste verzending zijn bijgekomen.</p>
 </td><!-- /left -->
@@ -2760,8 +2760,8 @@ $result = $campaign->update('pbrqulw2tc', array(
 <p>Een testmail versturen.</p>
 <h4>Parameters</h4>
 <table class="vars">
-<tr><td class="var">campaign_id <span class="required">(verplicht)</span>:</td><td class="explanation">Het id van de campagne</td></tr>
-<tr><td class="var">email <span class="required">(verplicht)</span>:</td><td class="explanation">Het e-mailadres waarnaar de test verzonden moet worden.</td></tr>
+<tr><td class="var">campaign_id <span class="required">(manditory)</span>:</td><td class="explanation">Het id van de campagne</td></tr>
+<tr><td class="var">email <span class="required">(manditory)</span>:</td><td class="explanation">Het e-mailadres waarnaar de test verzonden moet worden.</td></tr>
 </table>
 <p>Ter info: alleen bij een campagne waarvoor al wel inhoud is, maar die nog niet verzonden is, kan een testmail verstuurd worden.</p>
 </td><!-- /left -->
@@ -2905,7 +2905,7 @@ $result = $campaign->update('pbrqulw2tc', array(
 <p>De resultaten van een campagne.</p>
 <h4>Parameters</h4>
 <table class="vars">
-<tr><td class="var">campaign_id <span class="required">(verplicht)</span>:</td><td class="explanation">Het id van de campagne</td></tr>
+<tr><td class="var">campaign_id <span class="required">(manditory)</span>:</td><td class="explanation">Het id van de campagne</td></tr>
 </table>
 </td><!-- /left -->
 
@@ -3117,9 +3117,9 @@ $result = $report->all();
 <h4>Parameters</h4>
 <table class="vars">
 <tr><td class="var">hostname:</td><td class="explanation">De hostname voor dit account, voor in de url hostname.email-provider.nl</td></tr>
-<tr><td class="var">company[name1] <span class="required">(verplicht)</span>:</td><td class="explanation">De naam van de organisatie van dit account</td></tr>
+<tr><td class="var">company[name1] <span class="required">(manditory)</span>:</td><td class="explanation">De naam van de organisatie van dit account</td></tr>
 <tr><td class="var">company[name2]:</td><td class="explanation">Extra regel voor de naam van de organisatie van dit account</td></tr>
-<tr><td class="var">user[email] <span class="required">(verplicht)</span>:</td><td class="explanation">E-mailadres van de bij dit account horende gebruiker</td></tr>
+<tr><td class="var">user[email] <span class="required">(manditory)</span>:</td><td class="explanation">E-mailadres van de bij dit account horende gebruiker</td></tr>
 <tr><td class="var">user[sex]:</td><td class="explanation">Geslacht van de bij dit account horende gebruiker (<code>male</code> of <code>female</code>)</td></tr>
 <tr><td class="var">user[name1]:</td><td class="explanation">De voornaam van de bij dit account horende gebruiker</td></tr>
 <tr><td class="var">user[name2]:</td><td class="explanation">De achternaam van de bij dit account horende gebuiker</td></tr>
@@ -3188,7 +3188,7 @@ Dit onderdeel is nog niet opgenomen in de php-wrapper.
 <p>Alle informatie over een account.</p>
 <h4>Parameters</h4>
 <table class="vars">
-<tr><td class="var">account_id <span class="required">(verplicht)</span>:</td><td class="explanation">Het id van het account</td></tr>
+<tr><td class="var">account_id <span class="required">(manditory)</span>:</td><td class="explanation">Het id van het account</td></tr>
 </table>
 </td><!-- /left -->
 
