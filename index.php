@@ -62,7 +62,7 @@ function generate_address(username, domain) {
 	<li><a href="#login">Login</a><li>
 </ul>
 
-<?php // NOTE: curl, php and .NET buttons broken. Displays Show :href="?lib=curl">curl|href="?lib=php">php|href="?lib=dotnet">.NET?>
+<?php // !!!!! NOTE: curl, php and .NET buttons broken. Displays "Show :href="?lib=curl">curl|href="?lib=php">php|href="?lib=dotnet">.NET" !!!!! ?>
 
 <ul id="lib">
 <li>Show:</li>
@@ -118,12 +118,12 @@ function generate_address(username, domain) {
 <td class="left">
 <a id="auth"></a>
 <h2>Authentication</h2>
-<p>Each request must include the account's API key. This can be found by logging in and proceeding to click on 'Access &amp; Subscription' on the top right, and then going to 'Links - API'.</p>
+<p>Each query must include the account's API key. This can be found by logging in and proceeding to click on 'Access &amp; Subscription' on the top right, and then going to 'Links - API'.</p>
 <p>The Authentication process is achieved using <a href="http://en.wikipedia.org/wiki/Basic_access_authentication">Basic Authentication</a>. The API-key functions as the username; a password is not required.</p>
 </td><!-- /left -->
 
 <td class="right">
-<h4>Example of request</h4>
+<h4>Example of query</h4>
 <? if (empty($lib) || $lib == 'curl') { ?>
 <pre class="code">
 $ curl https://api.laposta.nl/v2/member?list_id=BaImMu3JZA \
@@ -151,12 +151,12 @@ member = memberService.Get("9978ydioiZ");
 <td class="left">
 <a id="ratelimiting"></a>
 <h2>Ratelimiting</h2>
-<p>In order to protect our systems, we have decided to limit the number of requests per unit of time. If you have reached a limit, you will recieve a notification from our server. This notification also indicates after how many seconds a next request is possible again.</p>
+<p>In order to protect our systems, we have decided to limit the number of requests per unit of time. If you have reached a limit, you will recieve a notification from our server. This notification also indicates after how many seconds a next query is possible again.</p>
 </td><!-- /left -->
 
 <td class="right">
 <h4>If the limit is reached</h4>
-<p>If you reach the limit, the server will respond with status code 429 (Too Many Requests). The server will also send a Retry-After header indicating the number of seconds to wait until the next request is possible.
+<p>If you reach the limit, the server will respond with status code 429 (Too Many Requests). The server will also send a Retry-After header indicating the number of seconds to wait until the next query is possible.
 </td><!-- /right -->
 </tr>
 
@@ -164,7 +164,7 @@ member = memberService.Get("9978ydioiZ");
 <td class="left">
 <a id="errors"></a>
 <h2>Error messages</h2>
-<p>Our API uses as many standard HTTP status codes as possible in order to indicate how a request has proceeded. Codes in the 2xx range indicate a successful request, codes in the 4xx range indicate the presence of an error in the delivery of information (e.g. missing parameters), and codes in the 5xx range indicate that something went wrong on our end.</p>
+<p>Our API uses as many standard HTTP status codes as possible in order to indicate how a query has proceeded. Codes in the 2xx range indicate a successful query, codes in the 4xx range indicate the presence of an error in the delivery of information (e.g. missing parameters), and codes in the 5xx range indicate that something went wrong on our end.</p>
 <p>All error messages are compiled in JSON format and include an indication in regards to the type of error, a notification in regular language, and potentially a code with a parameter (in order to indicate the nature of the error).</p>
 </td><!-- /left -->
 
@@ -175,8 +175,8 @@ member = memberService.Get("9978ydioiZ");
 <tr><td class="l">201  Created</td><td>Everything is in order, object created</td></tr>
 <tr><td class="l">400  Bad Request</td><td>Incomplete input</td></tr>
 <tr><td class="l">401  Unauthorized</td><td>No valid API key was provided</td></tr>
-<tr><td class="l">402  Request Failed</td><td>Input was in order, but request was not processed</td></tr>
-<tr><td class="l">404  Not Found</td><td>The requested object does not exist/could not be located</td></tr>
+<tr><td class="l">402  Request Failed</td><td>Input was in order, but query was not processed</td></tr>
+<tr><td class="l">404  Not Found</td><td>The queried object does not exist/could not be located</td></tr>
 <tr><td class="l">429  Too Many Requests</td><td>The maximum number of requests was reached within the given unit of time</td></tr>
 <tr><td class="l">500  Server Error</td><td>Error detected on Laposta's side</td></tr>
 </table>
@@ -244,7 +244,7 @@ member = memberService.Get("9978ydioiZ");
 <table class="vars">
 <tr><td class="var">list_id:</td><td class="explanation">ID of the list in question</td></tr>
 <tr><td class="var">created:</td><td class="explanation">Date and time of creation</td></tr>
-<tr><td class="var">modified:</td><td class="explanation">Date and time of last made change</td></tr>
+<tr><td class="var">modified:</td><td class="explanation">Date and time of last change made</td></tr>
 <tr><td class="var">state:</td><td class="explanation">Status of the list: <code>active</code> or <code>deleted</code></td></tr>
 <tr><td class="var">name:</td><td class="explanation">Name given to the list in question</td></tr>
 <tr><td class="var">remarks:</td><td class="explanation">Potential remarks</td></tr>
@@ -266,7 +266,7 @@ member = memberService.Get("9978ydioiZ");
   	"name": "Testlist",
   	"remarks": "A list for testing purposes",
 	"subscribe_notification_email", "subscription@example.net",
-	"unsubscribe_notification_email", "cancellationsub@example.net",
+	"unsubscribe_notification_email", "unsubscription@example.net",
 	"members": {
 		"active": 1232,
 		"unsubscribed": 113,
@@ -281,10 +281,10 @@ member = memberService.Get("9978ydioiZ");
 <tr>
 <td class="left continue">
 <h3>Adding a list</h3>
-<p>If there is something wrong with the parameters provided, a code is displayed with the error message. You may use these in combination with the variable 'parameter' to display a message to the user. See above under 'Error messages' what the codes stand for.</p>
+<p>If there is something wrong with the parameters provided, a code is displayed with an error message. You may use these in combination with the variable 'parameter' to display a message to the user. See above under 'Error messages' what the codes stand for.</p>
 <h4>Parameters</h4>
 <table class="vars">
-<tr><td class="var">name <span class="required">(manditory)</span>:</td><td class="explanation">Name given to the list in question</td></tr>
+<tr><td class="var">name <span class="required">(mandatory)</span>:</td><td class="explanation">Name given to the list in question</td></tr>
 <tr><td class="var">remarks:</td><td class="explanation">Potential remarks</td></tr>
 <tr><td class="var">subscribe_notification_email:</td><td class="explanation">Email address to which a notification will be sent upon a subscription</td></tr>
 <tr><td class="var">unsubscribe_notification_email:</td><td class="explanation">Email address to which a notification will be sent upon the cancelling of a subscription</td></tr>
@@ -297,7 +297,7 @@ member = memberService.Get("9978ydioiZ");
 POST https://api.laposta.nl/v2/list
 </pre>
 
-<h4>Example of request</h4>
+<h4>Example of query</h4>
 <pre class="code">
 <? if (empty($lib) || $lib == 'curl') { ?>
 $ curl https://api.laposta.nl/v2/list \
@@ -305,7 +305,7 @@ $ curl https://api.laposta.nl/v2/list \
   -d name=Testlist \
   '-d remarks=A list for testing purposes.' \
   -d subscribe_notification_email=subscription@example.net \
-  -d unsubscribe_notification_email=cancellationsub@example.net
+  -d unsubscribe_notification_email=unsubscription@example.net
 <? } else if ($lib == 'php') { ?>
 require_once('./lib/Laposta.php');
 Laposta::setApiKey('JdMtbsMq2jqJdQZD9AHC');
@@ -314,7 +314,7 @@ $result = $list->create(array(
 	'name' => 'Testlist',
 	'remarks' => 'A list for testing purposes.',
 	'subscribe_notification_email' => 'subscription@example.net',
-	'unsubscribe_notification_email' => 'cancellationsub@example.net'
+	'unsubscribe_notification_email' => 'unsubscription@example.net'
 	)
 );
 <? } else if ($lib == 'dotnet') { ?>
@@ -337,7 +337,7 @@ list = listService.Create(list);
   	"name": "Testlist",
   	"remarks": "A list for testing purposes.",
 	"subscribe_notification_email", "subscription@example.net",
-	"unsubscribe_notification_email", "cancellationsub@example.net",
+	"unsubscribe_notification_email", "unsubscription@example.net",
 	"members": {
 		"active": 0,
 		"unsubscribed": 0,
@@ -351,11 +351,11 @@ list = listService.Create(list);
 
 <tr>
 <td class="left continue">
-<h3>Requesting a list</h3>
+<h3>Querying a list</h3>
 <p>All information about a list.</p>
 <h4>Parameters</h4>
 <table class="vars">
-<tr><td class="var">list_id <span class="required">(manditory)</span>:</td><td class="explanation">The list's ID</td></tr>
+<tr><td class="var">list_id <span class="required">(mandatory)</span>:</td><td class="explanation">The list's ID</td></tr>
 </table>
 </td><!-- /left -->
 
@@ -364,7 +364,7 @@ list = listService.Create(list);
 <pre class="code">
 GET https://api.laposta.nl/v2/list/{list_id}
 </pre>
-<h4>Example of request</h4>
+<h4>Example of query</h4>
 <pre class="code">
 <? if (empty($lib) || $lib == 'curl') { ?>
 $ curl https://api.laposta.nl/v2/list/BaImMu3JZA \
@@ -392,7 +392,7 @@ list = listService.Get("BaImMu3JZA");
 	"name": "Testlist",
 	"remarks": "A list for testing purposes",
 	"subscribe_notification_email", "subscription@example.net",
-	"unsubscribe_notification_email", "cancellationsub@example.net",
+	"unsubscribe_notification_email", "unsubscription@example.net",
 	"members": {
 		"active": 1232,
 		"unsubscribed": 113,
@@ -410,7 +410,7 @@ list = listService.Get("BaImMu3JZA");
 <p>You only need to send the fields that need to be changed in the application. Fields that are not mentioned will keep their current value. As soon as a field is mentioned, it is checked and may therefore cause an error message. A code is displayed with this error message. You may use this code in combination with the variable 'parameter' to display a message to the user. See above under 'Error messages' what the codes stand for.</p>
 <h4>Parameters</h4>
 <table class="vars">
-<tr><td class="var">list_id <span class="required">(manditory)</span>:</td><td class="explanation">The ID of the list that has to be edited</td></tr>
+<tr><td class="var">list_id <span class="required">(mandatory)</span>:</td><td class="explanation">The ID of the list that has to be edited</td></tr>
 <tr><td class="var">name:</td><td class="explanation">A name for the list in question</td></tr>
 <tr><td class="var">remarks:</td><td class="explanation">Potential remarks</td></tr>
 <tr><td class="var">subscribe_notification_email:</td><td class="explanation">Email address to which a notification will be sent upon a subscription</td></tr>
@@ -424,7 +424,7 @@ list = listService.Get("BaImMu3JZA");
 POST https://api.laposta.nl/v2/list/{list_id}
 </pre>
 
-<h4>Example of request</h4>
+<h4>Example of query</h4>
 <p class="info">This example changes the name.</p>
 <pre class="code">
 <? if (empty($lib) || $lib == 'curl') { ?>
@@ -458,7 +458,7 @@ list = listService.Update("BaImMu3JZA", list);
         "name": "Customers",
         "remarks": "A list for testing purposes.",
 	"subscribe_notification_email", "subscription@example.net",
-	"unsubscribe_notification_email", "cancellationsub@example.net",
+	"unsubscribe_notification_email", "unsubscription@example.net",
 	"members": {
 		"active": 1232,
 		"unsubscribed": 113,
@@ -473,10 +473,10 @@ list = listService.Update("BaImMu3JZA", list);
 <tr>
 <td class="left continue">
 <h3>Deleting a list</h3>
-<p>This permanently deletes a list. If the list does not exist, an error message is displayed. In response you get another list object, but now with the state 'deleted'. After having finished this procedure, it is no longer possible for the user to request the list.</p>
+<p>This permanently deletes a list. If the list does not exist, an error message is displayed. In response you are shown another list object, but now with the state 'deleted'. After having finished this procedure, it is no longer possible for the user to query the list.</p>
 <h4>Parameters</h4>
 <table class="vars">
-<tr><td class="var">list_id <span class="required">(manditory)</span>:</td><td class="explanation">The ID of the list</td></tr>
+<tr><td class="var">list_id <span class="required">(mandatory)</span>:</td><td class="explanation">The ID of the list</td></tr>
 </table>
 </td><!-- /left -->
 
@@ -486,7 +486,7 @@ list = listService.Update("BaImMu3JZA", list);
 DELETE https://api.laposta.nl/v2/list/{list_id}
 </pre>
 
-<h4>Example of request</h4>
+<h4>Example of query</h4>
 <pre class="code">
 <? if (empty($lib) || $lib == 'curl') { ?>
 $ curl https://api.laposta.nl/v2/list/BaImMu3JZA \
@@ -515,7 +515,7 @@ list = listService.Delete("BaImMu3JZA");
     	"name": "Customers",
         "remarks": "A list for testing purposes",
 	"subscribe_notification_email", "subscription@example.net",
-	"unsubscribe_notification_email", "cancellationsub@example.net",
+	"unsubscribe_notification_email", "unsubscription@example.net",
 	"members": {
 		"active": 1232,
 		"unsubscribed": 113,
@@ -529,10 +529,10 @@ list = listService.Delete("BaImMu3JZA");
 
 <tr>
 <td class="left continue">
-<h3>Requesting all lists</h3>
+<h3>Querying all lists</h3>
 <p>All lists in an array of list objects. The list objects have been ordered in an array with the name 'data'.</p>
 <h4>Parameters</h4>
-<p>No parameters need to be entered.</p>
+<p>No parameters need to be provided.</p>
 </td><!-- /left -->
 
 <td class="right continue">
@@ -541,7 +541,7 @@ list = listService.Delete("BaImMu3JZA");
 GET https://api.laposta.nl/v2/list
 </pre>
 
-<h4>Example of request</h4>
+<h4>Example of query</h4>
 <pre class="code">
 <? if (empty($lib) || $lib == 'curl') { ?>
 $ curl https://api.laposta.nl/v2/list \
@@ -571,7 +571,7 @@ lists = listService.All();
                 "name": "Testlist",
                 "remarks": "A list for testing purposes.",
         	"subscribe_notification_email", "subscription@example.net",
-        	"unsubscribe_notification_email", "cancellationsub@example.net"
+        	"unsubscribe_notification_email", "unsubscription@example.net"
 		"members": {
 			"active": 1232,
 			"unsubscribed": 113,
@@ -588,7 +588,7 @@ lists = listService.All();
                 "name": "Another list",
                 "remarks": "Customers",
         	"subscribe_notification_email", "subscription@example.net",
-        	"unsubscribe_notification_email", "cancellationsub@example.net"
+        	"unsubscribe_notification_email", "unsubscription@example.net"
 		"members": {
 			"active": 8182,
 			"unsubscribed": 205,
@@ -608,7 +608,7 @@ lists = listService.All();
 <p>This permanently purges all <i>active</i> relations from a list, but doesn't delete the list itself. If the list does not exist, an error message is displayed. In response, you are shown another list object.</p>
 <h4>Parameters</h4>
 <table class="vars">
-<tr><td class="var">list_id <span class="required">(manditory)</span>:</td><td class="explanation">The ID of the list</td></tr>
+<tr><td class="var">list_id <span class="required">(mandatory)</span>:</td><td class="explanation">The ID of the list</td></tr>
 </table>
 </td><!-- /left -->
 
@@ -618,7 +618,7 @@ lists = listService.All();
 DELETE https://api.laposta.nl/v2/list/{list_id}/members
 </pre>
 
-<h4>Example of request</h4>
+<h4>Example of query</h4>
 <pre class="code">
 <? if (empty($lib) || $lib == 'curl') { ?>
 $ curl https://api.laposta.nl/v2/list/BaImMu3JZA/members \
@@ -644,7 +644,7 @@ $result = $list->delete('BaImMu3JZA', 'members');
     	"name": "Customers",
         "remarks": "A list for testing purposes",
 	"subscribe_notification_email", "subscription@example.net",
-	"unsubscribe_notification_email", "cancellationsub@example.net",
+	"unsubscribe_notification_email", "unsubscription@example.net",
 	"members": {
 		"active": 1232,
 		"unsubscribed": 113,
@@ -664,7 +664,7 @@ $result = $list->delete('BaImMu3JZA', 'members');
 <td class="left">
 <a id="fields"></a>
 <h2>Fields</h2>
-<p>This section allows you to request, add and edit fields of lists.</p>
+<p>This section allows you to query, add and edit fields of lists.</p>
 </td><!-- /left -->
 
 <td class="right">
@@ -694,7 +694,7 @@ $result = $list->delete('BaImMu3JZA', 'members');
 <tr><td class="var">datatype_display:</td><td class="explanation">Only applicable for select_single: the desired display (<code>select</code>, <code>radio</code>)</td></tr>
 <tr><td class="var">options:</td><td class="explanation">An array of the available options (only for <code>select_single</code> or <code>select_multiple</code>)</td></tr>
 <tr><td class="var">options_full:</td><td class="explanation">An array of the available options, including IDs (alleen bij <code>select_single</code> or <code>select_multiple</code>)</td></tr>
-<tr><td class="var">required:</td><td class="explanation">Is this a manditory field? (<code>true</code> or <code>false</code>)</td></tr>
+<tr><td class="var">required:</td><td class="explanation">Is this a mandatory field? (<code>true</code> or <code>false</code>)</td></tr>
 <tr><td class="var">in_form:</td><td class="explanation">Does this field occur in the subscription form? (<code>true</code> or <code>false</code>)</td></tr>
 <tr><td class="var">in_list:</td><td class="explanation">Does this field occur while browsing the list? (<code>true</code> or <code>false</code>)</td></tr>
 </table>
@@ -728,18 +728,18 @@ $result = $list->delete('BaImMu3JZA', 'members');
 <tr>
 <td class="left continue">
 <h3>Adding a field</h3>
-<p>If there is something wrong with the parameters provided, a code is displayed with the error message. See above under 'Error messages' what the codes stand for.</p>
+<p>If there is something wrong with the parameters provided, a code is displayed with an error message. See above under 'Error messages' what the codes stand for.</p>
 <h4>Parameters</h4>
 <table class="vars">
-<tr><td class="var">list_id <span class="required">(manditory)</span>:</td><td class="explanation">The ID of the list to which the field belongs</td></tr>
-<tr><td class="var">name <span class="required">(manditory)</span>:</td><td class="explanation">A name for this field</td></tr>
+<tr><td class="var">list_id <span class="required">(mandatory)</span>:</td><td class="explanation">The ID of the list to which the field belongs</td></tr>
+<tr><td class="var">name <span class="required">(mandatory)</span>:</td><td class="explanation">A name for this field</td></tr>
 <tr><td class="var">defaultvalue:</td><td class="explanation">A potential default value</td></tr>
-<tr><td class="var">datatype <span class="required">(manditory)</span>:</td><td class="explanation">The data type: <code>text</code>, <code>numeric</code>, <code>date</code>, <code>select_single</code> or <code>select_multiple</code></td></tr>
+<tr><td class="var">datatype <span class="required">(mandatory)</span>:</td><td class="explanation">The data type: <code>text</code>, <code>numeric</code>, <code>date</code>, <code>select_single</code> or <code>select_multiple</code></td></tr>
 <tr><td class="var">datatype_display:</td><td class="explanation">Only applicable for select_single: the desired display (<code>select</code>, <code>radio</code>)</td></tr>
-<tr><td class="var">options:</td><td class="explanation">What selection options are available? (Manditory for the data types <code>select_single</code> of <code>select_multiple</code>). The options can be given as an array. In the answer the options are repeated, but there is also an extra field <code>options_full</code>. Also listed are the option IDs, which may eventually be used to change the options later.</td></tr>
-<tr><td class="var">required <span class="required">(manditory)</span>:</td><td class="explanation">Is this a manditory field?</td></tr>
-<tr><td class="var">in_form <span class="required">(manditory)</span>:</td><td class="explanation">Does this field occur in the subscription form? (<code>boolean</code>)</td></tr>
-<tr><td class="var">in_list <span class="required">(manditory)</span>:</td><td class="explanation">Is this field visible in Laposta's overview? (<code>boolean</code>)</td></tr>
+<tr><td class="var">options:</td><td class="explanation">What selection options are available? (mandatory for the data types <code>select_single</code> of <code>select_multiple</code>). The options can be given as an array. In the answer the options are repeated, but there is also an extra field <code>options_full</code>. Also listed are the option IDs, which may eventually be used to change the options later.</td></tr>
+<tr><td class="var">required <span class="required">(mandatory)</span>:</td><td class="explanation">Is this a mandatory field?</td></tr>
+<tr><td class="var">in_form <span class="required">(mandatory)</span>:</td><td class="explanation">Does this field occur in the subscription form? (<code>boolean</code>)</td></tr>
+<tr><td class="var">in_list <span class="required">(mandatory)</span>:</td><td class="explanation">Is this field visible in Laposta's overview? (<code>boolean</code>)</td></tr>
 </table>
 </td><!-- /left -->
 
@@ -749,7 +749,7 @@ $result = $list->delete('BaImMu3JZA', 'members');
 POST https://api.laposta.nl/v2/field
 </pre>
 
-<h4>Example of request</h4>
+<h4>Example of query</h4>
 <pre class="code">
 <? if (empty($lib) || $lib == 'curl') { ?>
 curl https://api.laposta.nl/v2/field \
@@ -835,12 +835,12 @@ field = fieldService.Create(field);
 
 <tr>
 <td class="left continue">
-<h3>Requesting a field</h3>
+<h3>Querying a field</h3>
 <p>All information about a field.</p>
 <h4>Parameters</h4>
 <table class="vars">
-<tr><td class="var">list_id <span class="required">(manditory)</span>:</td><td class="explanation">The ID of the list to which the field belongs</td></tr>
-<tr><td class="var">field_id <span class="required">(manditory)</span>:</td><td class="explanation">The ID of the requestable field</td></tr>
+<tr><td class="var">list_id <span class="required">(mandatory)</span>:</td><td class="explanation">The ID of the list to which the field belongs</td></tr>
+<tr><td class="var">field_id <span class="required">(mandatory)</span>:</td><td class="explanation">The ID of the requestable field</td></tr>
 </table>
 </td><!-- /left -->
 
@@ -849,7 +849,7 @@ field = fieldService.Create(field);
 <pre class="code">
 GET https://api.laposta.nl/v2/field/{field_id}
 </pre>
-<h4>Example of request</h4>
+<h4>Example of query</h4>
 <pre class="code">
 <? if (empty($lib) || $lib == 'curl') { ?>
 $ curl https://api.laposta.nl/v2/field/gt2Em8vJwi?list_id=BaImMu3JZA \
@@ -893,18 +893,18 @@ field = fieldService.Get("gt2Em8vJwi");
 <tr>
 <td class="left continue">
 <h3>Editing fields</h3>
-<p>You only have to include the fields that need to be changed in the application. Unnamed fields keep their current values. Once a field is mentioned it does get checked, and thus can cause an error message. This error message displays a code with a message. See above under 'Error messages' what the codes stand for.</p>
+<p>You only have to include the fields that need to be changed in the application. Fields that are not mentioned will keep their current value fields keep their current values. As soon as a field is mentioned it does get checked, and thus can cause an error message. This error message displays a code with a message. See above under 'Error messages' what the codes stand for.</p>
 <p class="info">Please note that changing the data type removes all data from the field in question.</p>
 <h4>Parameters</h4>
 <table class="vars">
-<tr><td class="var">list_id <span class="required">(manditory)</span>:</td><td class="explanation">The ID of the list to which the field belongs</td></tr>
+<tr><td class="var">list_id <span class="required">(mandatory)</span>:</td><td class="explanation">The ID of the list to which the field belongs</td></tr>
 <tr><td class="var">name:</td><td class="explanation">A name for this field</td></tr>
 <tr><td class="var">datatype:</td><td class="explanation">The data type of this field (<code>text</code>, <code>numeric</code>, <code>date</code>, <code>select_single</code>, <code>select_multiple</code>)</td></tr>
 <tr><td class="var">datatype_display:</td><td class="explanation">Only applicable for select_single: the desired display (<code>select</code>, <code>radio</code>)</td></tr>
 <tr><td class="var">options:</td><td class="explanation">What selection options are available? Array with values only. Please note that this list replaces the existing options in its entirety. To modify fields already in use, it is preferable to use <code>options_full</code>. (Only possible for data types <code>select_single</code> or <code>select_multiple</code>)</td></tr>
 <tr><td class="var">options_full:</td><td class="explanation">What selection options are there? Array with per option both the value (<code>value</code>) and the ID (<code>ID</code>). Please note that this list replaces the existing options in its entirety. If IDs match, the corresponding option is changed. (Only possible for data types <code>select_single</code> of <code>select_multiple</code>)</td></tr>
 <tr><td class="var">defaultvalue:</td><td class="explanation">The default value (will be used in the absence of this field)</td></tr>
-<tr><td class="var">required:</td><td class="explanation">Is this a manditory field?</td></tr>
+<tr><td class="var">required:</td><td class="explanation">Is this a mandatory field?</td></tr>
 <tr><td class="var">in_form:</td><td class="explanation">Does this field occur in the subscription form? (<code>boolean</code>)</td></tr>
 <tr><td class="var">in_list:</td><td class="explanation">Is this field visible in Laposta's overview? (<code>boolean</code>)</td></tr>
 </table>
@@ -916,8 +916,8 @@ field = fieldService.Get("gt2Em8vJwi");
 POST https://api.laposta.nl/v2/field/{field_id}
 </pre>
 
-<h4>Example of request</h4>
-<p class="info">Dit voorbeeld maakt het veld niet meer manditory.</p>
+<h4>Example of query</h4>
+<p class="info">This example makes the field no longer  mandatory.</p>
 <pre class="code">
 <? if (empty($lib) || $lib == 'curl') { ?>
 $ curl https://api.laposta.nl/v2/field/hsJ5zbDfzJ \
@@ -940,7 +940,7 @@ field.Required = false;
 field = fieldService.Update("hsJ5zbDfzJ", field);
 <? } ?>
 </pre>
-<h4>Voorbeeld antwoord</h4>
+<h4>Example of response</h4>
 <pre class="code">
 {
     "field": {
@@ -949,9 +949,9 @@ field = fieldService.Update("hsJ5zbDfzJ", field);
         "created": "2012-10-31 11:55:50",
         "modified": "2012-10-31 12:05:44",
         "state": "active",
-        "name": "Leeftijd",
-        "tag": "{{leeftijd}}",
-        "custom_name": "leeftijd",
+        "name": "Age,
+        "tag": "{{Age}}",
+        "custom_name": "Age",
         "defaultvalue": "",
         "datatype": "text",
         "datatype_display": null,
@@ -966,22 +966,22 @@ field = fieldService.Update("hsJ5zbDfzJ", field);
 
 <tr>
 <td class="left continue">
-<h3>Veld verwijderen</h3>
-<p>Hiermee verwijdert u een veld definitief. Als het veld niet bestaat wordt een foutmelding gegeven. Als antwoord krijgt u weer een veld object, maar nu met state 'deleted'. Hierna is dit veld niet nogmaals op te vragen.</p>
+<h3>Deleting a field</h3>
+<p>This permanently deletes a field. If the field does not exist, an error message is displayed. In response you are shown another field object, but now with the state 'deleted'. After having finished this procedure, it is no longer possible for the user to query the field.</p>
 <h4>Parameters</h4>
 <table class="vars">
-<tr><td class="var">field_id <span class="required">(manditory)</span>:</td><td class="explanation">Het id van het te verwijderen veld</td></tr>
-<tr><td class="var">list_id <span class="required">(manditory)</span>:</td><td class="explanation">Het id van de lijst waartoe het veld behoort</td></tr>
+<tr><td class="var">field_id <span class="required">(mandatory)</span>:</td><td class="explanation">The ID of the field to be deleted</td></tr>
+<tr><td class="var">list_id <span class="required">(mandatory)</span>:</td><td class="explanation">The ID of the list to which the field belongs</td></tr>
 </table>
 </td><!-- /left -->
 
 <td class="right continue">
-<h4>Definitie</h4>
+<h4>Definition</h4>
 <pre class="code">
 DELETE https://api.laposta.nl/v2/field/{field_id}
 </pre>
 
-<h4>Voorbeeld aanvraag</h4>
+<h4>Example of query</h4>
 <pre class="code">
 <? if (empty($lib) || $lib == 'curl') { ?>
 $ curl https://api.laposta.nl/v2/field/lxwc8OyD3a?list_id=BaImMu3JZA \
@@ -999,7 +999,7 @@ LapostaField field = new LapostaField();
 field = fieldService.Delete("lxwc8OyD3a");
 <? } ?>
 </pre>
-<h4>Voorbeeld antwoord</h4>
+<h4>Example of response</h4>
 <pre class="code">
 {
     "field": {
@@ -1008,9 +1008,9 @@ field = fieldService.Delete("lxwc8OyD3a");
         "created": "2012-10-30 21:44:40",
         "modified": null,
         "state": "deleted",
-        "name": "Lievelingskleur",
-        "tag": "{{lievelingskleur}}",
-        "custom_name": "lievelingskleur",
+        "name": "FavoriteColor",
+        "tag": "{{favoritecolor}}",
+        "custom_name": "favoritecolor",
         "defaultvalue": "",
         "datatype": "text",
         "datatype_display": null,
@@ -1025,21 +1025,21 @@ field = fieldService.Delete("lxwc8OyD3a");
 
 <tr>
 <td class="left continue">
-<h3>Alle velden van een lijst opvragen</h3>
-<p>Alle velden van een lijst in een array van field objecten. De field objecten zijn opgenomen in een array met de naam 'data'.</p>
+<h3>Querying all fields of a list</h3>
+<p>All fields of a list in an array of field objects. The field objects are compiled in an array named 'data'.</p>
 <h4>Parameters</h4>
 <table class="vars">
-<tr><td class="var">list_id <span class="required">(manditory)</span>:</td><td class="explanation">Het id van de lijst waarbij de velden horen</td></tr>
+<tr><td class="var">list_id <span class="required">(mandatory)</span>:</td><td class="explanation">The ID of the list to which the field belongs</td></tr>
 </table>
 </td><!-- /left -->
 
 <td class="right continue">
-<h4>Definitie</h4>
+<h4>Definition</h4>
 <pre class="code">
 GET https://api.laposta.nl/v2/field
 </pre>
 
-<h4>Voorbeeld aanvraag</h4>
+<h4>Example of query</h4>
 <pre class="code">
 <? if (empty($lib) || $lib == 'curl') { ?>
 $ curl https://api.laposta.nl/v2/field?list_id=BaImMu3JZA \
@@ -1056,7 +1056,7 @@ var fields = Enumerable.Empty<LapostaField>();
 fields = fieldService.All();
 <? } ?>
 </pre>
-<h4>Voorbeeld antwoord</h4>
+<h4>Example of response</h4>
 <pre class="code">
 {
     "data": [
@@ -1067,10 +1067,10 @@ fields = fieldService.All();
 		"created": "2012-02-18 11:42:38",
 		"modified": "2012-06-02 14:07:20",
 		"state": "active",
-		"name": "Naam",
-		"tag": "{{naam}}",
-		"custom_name": "naam",
-		"defaultvalue": "lezer",
+		"name": "Name",
+		"tag": "{{name}}",
+		"custom_name": "name",
+		"defaultvalue": "reader",
 		"datatype": "text",
 		"required": true,
 		"in_form": true,
@@ -1084,10 +1084,10 @@ fields = fieldService.All();
 		"created": "2012-03-28 20:12:02",
 		"modified": "2012-03-28 20:13:10",
 		"state": "active",
-		"name": "Leeftijd",
-		"tag": "{{leeftijd}}",
-		"custom_name": "leeftijd",
-		"defaultvalue": "onbekend",
+		"name": "Age",
+		"tag": "{{age}}",
+		"custom_name": "age",
+		"defaultvalue": "unknown",
 		"datatype": "date",
 		"required": true,
 		"in_form": true,
@@ -1102,18 +1102,18 @@ fields = fieldService.All();
 
 
 <!-- ***************************************************************** -->
-<!-- *************************** RELATIES **************************** -->
+<!-- *************************** RELATIONS **************************** -->
 <!-- ***************************************************************** -->
 <tr>
 <td class="left">
 <a id="members"></a>
-<h2>Relaties</h2>
-<p>Met dit onderdeel kunt u relaties opvragen, toevoegen en wijzigen.</p>
-<p>Als parameter heeft u steeds een list_id nodig. Deze kunt u vinden door in te loggen, en dan naar de betreffende lijst te gaan onder 'Relaties'. Vervolgens klikt u op de tab 'Kenmerken lijst'. Aan de rechterzijde ziet u daar het ID staan.</p>
+<h2>Relations</h2>
+<p>This section allows you to retrieve, add and change relations.</p>
+<p>You will need a list_id as a parameter each time. You can find this by logging in, and proceeding to the corresponding list under 'Relations'. Next up, click on the tab labeled 'Attributes list'. On the right side you will see the ID there.</p>
 </td><!-- /left -->
 
 <td class="right">
-<h2>URL patronen</h2>
+<h2>URL patterns</h2>
 <ul class="code">
 <li>/v2/member</li>
 <li>/v2/member/{member_id}</li>
@@ -1123,23 +1123,23 @@ fields = fieldService.All();
 
 <tr>
 <td class="left continue">
-<h3>Het member object</h3>
-<h4>Velden</h4>
+<h3>The member object</h3>
+<h4>Fields</h4>
 <table class="vars">
-<tr><td class="var">member_id:</td><td class="explanation">Het id van dit member object</td></tr>
-<tr><td class="var">list_id:</td><td class="explanation">Het id van de bijbehorende lijst</td></tr>
-<tr><td class="var">email:</td><td class="explanation">Het e-mail adres</td></tr>
-<tr><td class="var">state:</td><td class="explanation">De huidige status van deze relatie: <code>active</code>, <code>unsubscribed</code>, <code>unconfirmed</code> of <code>cleaned</code></td></tr>
-<tr><td class="var">signup_date:</td><td class="explanation">Moment van aanmelding, formaat YYYY-MM-DD HH:MM:SS</td></tr>
-<tr><td class="var">modified:</td><td class="explanation">Moment van laatste wijziging, formaat YYYY-MM-DD HH:MM:SS</td></tr>
-<tr><td class="var">ip:</td><td class="explanation">IP vanwaar de relatie is aangemeld</td></tr>
-<tr><td class="var">source_url:</td><td class="explanation">URL vanwaar de relatie is aangemeld</td></tr>
-<tr><td class="var">custom_fields:</td><td class="explanation">Een array met de waarde van alle extra velden van de bijbehorende lijst. Als hier velden bijzitten waar meerdere opties kunnen worden gekozen, dan worden deze opties in een array opgesomd.</td></tr>
+<tr><td class="var">member_id:</td><td class="explanation">The ID of this member object</td></tr>
+<tr><td class="var">list_id:</td><td class="explanation">The ID of the related list</td></tr>
+<tr><td class="var">email:</td><td class="explanation">The email address</td></tr>
+<tr><td class="var">state:</td><td class="explanation">The current status of this relation: <code>active</code>, <code>unsubscribed</code>, <code>unconfirmed</code> or <code>cleaned</code></td></tr>
+<tr><td class="var">signup_date:</td><td class="explanation">Time and date of subscription, format YYYY-MM-DD HH:MM:SS</td></tr>
+<tr><td class="var">modified:</td><td class="explanation">Time and date of last change made, format YYYY-MM-DD HH:MM:SS</td></tr>
+<tr><td class="var">ip:</td><td class="explanation">IP from which the relation is registered</td></tr>
+<tr><td class="var">source_url:</td><td class="explanation">URL from which the relation is registered</td></tr>
+<tr><td class="var">custom_fields:</td><td class="explanation">An array with the value of all additional fields of the corresponding list. If there are fields where several options can be selected, these options are listed in an array..</td></tr>
 </table>
 </td><!-- /left -->
 
 <td class="right continue">
-<h4>Voorbeeld member object</h4>
+<h4>Example of member object</h4>
 <pre class="code">
 {
     "member": {
@@ -1168,28 +1168,28 @@ fields = fieldService.All();
 
 <tr>
 <td class="left continue">
-<h3>Relatie toevoegen</h3>
-<p>Als er iets niet klopt aan de meegegeven parameters dan wordt bij de foutmelding een code weergegeven. Deze kunt u in combinatie met de variabele 'parameter' gebruiken om een melding aan de gebruiker te tonen. Zie hierboven bij Foutmeldingen wat de codes betekenen.</p>
+<h3>Adding a relation</h3>
+<p>If there is something wrong with the parameters provided, a code is displayed with an error message. You can use this in combination with the variable 'parameter' to display a message to the user. See above under 'Error messages' what the codes stand for.</p>
 <h4>Parameters</h4>
 <table class="vars">
-<tr><td class="var">list_id <span class="required">(manditory)</span>:</td><td class="explanation">Het id van de lijst waaraan de relatie moet worden toegevoegd</td></tr>
-<tr><td class="var">ip <span class="required">(manditory)</span>:</td><td class="explanation">Het IP-adres vanwaar de relatie is aangemeld</td></tr>
-<tr><td class="var">email <span class="required">(manditory)</span>:</td><td class="explanation">Het e-mailadres van de toe te voegen relatie</td></tr>
-<tr><td class="var">source_url:</td><td class="explanation">De URL vanwaar de relatie is aangemeld</td></tr>
-<tr><td class="var">custom_fields:</td><td class="explanation">De waardes van de extra aangemaakte velden</td></tr>
-<tr><td class="var">options:</td><td class="explanation">Extra aanwijzingen, mogelijkheden zijn: <code>suppress_email_notification: true</code> om te voorkomen dat bij elke aanmedling via een api een notificatiemailtje wordt verstuurd, <code>suppress_email_welcome: true</code> om te voorkomen dat de welkomstmail wordt verstuurd bij een aanmelding via de api, en <code>ignore_doubleoptin: true</code> om relaties bij een double-optin lijst meteen actief te maken en ervoor te zorgen dat er geen bevestigingsmail wordt verstuurd bij een aanmelding via de api.</td></tr>
+<tr><td class="var">list_id <span class="required">(mandatory)</span>:</td><td class="explanation">The ID of the list to which the relation must be added</td></tr>
+<tr><td class="var">ip <span class="required">(mandatory)</span>:</td><td class="explanation">The IP address from which the relation is registered</td></tr>
+<tr><td class="var">email <span class="required">(mandatory)</span>:</td><td class="explanation">The email address of the relation to be added</td></tr>
+<tr><td class="var">source_url:</td><td class="explanation">The URL from which the relation is registered</td></tr>
+<tr><td class="var">custom_fields:</td><td class="explanation">The values of the additionally created fields</td></tr>
+<tr><td class="var">options:</td><td class="explanation">Additional instructions, with possibilities being: <code>suppress_email_notification: true</code> to prevent a notification email from being sent every time someone logs in via an API, <code>suppress_email_welcome: true</code> to prevent the welcome email from being sent when registering via the API, and <code>ignore_doubleoptin: true</code> to instantly activate relationships on a double-optin list and ensure that no confirmation email is sent when signing up through the API.</td></tr>
 </table>
-<p class="info">Als het een double-optin lijst betreft dan wordt bij elke aanmelding een bevestigingsmail verstuurd, tenzij de optie 'ignore_doubleoptin' wordt meegegeven (zie hierboven).</p>
-<p class="info">Als er custom_fields zijn die manditory zijn gesteld, is het vullen van deze velden via de API ook manditory.</p>
+<p class="info">If it concerns a double-optin list then a confirmation email will be sent with each subscription, unless the 'ignore_doubleoptin' option is included (see above).</p>
+<p class="info">If there are custom_fields that have been set to mandatory, then filling these fields via the API is also mandatory.</p>
 </td><!-- /left -->
 
 <td class="right continue">
-<h4>Definitie</h4>
+<h4>Definition</h4>
 <pre class="code">
 POST https://api.laposta.nl/v2/member
 </pre>
 
-<h4>Voorbeeld aanvraag</h4>
+<h4>Example of query</h4>
 <pre class="code">
 <? if (empty($lib) || $lib == 'curl') { ?>
 $ curl https://api.laposta.nl/v2/member \
@@ -1233,8 +1233,8 @@ member.CustomFields = new Dictionary<string, string>()
 member = memberService.Create(member);
 <? } ?>
 </pre>
-<p class="info">Meerkeuze custom fields kunnen gevuld worden met de op dat moment voor dat veld gedefinieerde opties. U kunt dus gewoon de waarde van het veld meegeven. Als er meerdere keuzes gemaakt kunnen worden, dan kunt u deze in een array meegeven; zie het voorbeeld hierboven.</p>
-<h4>Voorbeeld antwoord</h4>
+<p class="info">Multiple choice custom fields can be filled with the currently defined options for that field. So you can simply enter the value of the field. If multiple choices can be made, you can pass them in an array; see the example above.</p>
+<h4>Example of response</h4>
 <pre class="code">
 {
     "member": {
@@ -1262,21 +1262,21 @@ member = memberService.Create(member);
 
 <tr>
 <td class="left continue">
-<h3>Relatie opvragen</h3>
-<p>Alle informatie over een relatie in een member object.</p>
+<h3>Querying a relation</h3>
+<p>All information about a relation in a member object</p>
 <h4>Parameters</h4>
 <table class="vars">
-<tr><td class="var">list_id <span class="required">(manditory)</span>:</td><td class="explanation">Het id van de lijst waarin de relatie voorkomt</td></tr>
-<tr><td class="var">member_id <span class="required">(manditory)</span>:</td><td class="explanation">Het id OF het emailadres van de relatie</td></tr>
+<tr><td class="var">list_id <span class="required">(mandatory)</span>:</td><td class="explanation">The ID of the list in which the relation appears</td></tr>
+<tr><td class="var">member_id <span class="required">(mandatory)</span>:</td><td class="explanation">The ID <i>or</i> the email address of the relation</td></tr>
 </table>
 </td><!-- /left -->
 
 <td class="right continue">
-<h4>Definitie</h4>
+<h4>Definition</h4>
 <pre class="code">
 GET https://api.laposta.nl/v2/member/{member_id}
 </pre>
-<h4>Voorbeeld aanvraag</h4>
+<h4>Example of query</h4>
 <pre class="code">
 <? if (empty($lib) || $lib == 'curl') { ?>
 $ curl https://api.laposta.nl/v2/member/Du83Hyjhj8?list_id=BaImMu3JZA \
@@ -1293,8 +1293,8 @@ LapostaMember member = new LapostaMember();
 member = memberService.Get("9978ydioiZ");
 <? } ?>
 </div>
-<p class="info">U kunt hier in plaats van het member_id ook het e-mailadres gebruiken. Let op: een '+' in het adres moet weergegeven worden als: %252B</p>
-<h4>Voorbeeld antwoord</h4>
+<p class="info">You may also use the email address here instead of the member_id. Please note that a '+' in the address should be displayed as: %252B</p>
+<h4>Example of response</h4>
 <pre class="code">
 {
     "member": {
@@ -1322,25 +1322,25 @@ member = memberService.Get("9978ydioiZ");
 
 <tr>
 <td class="left continue">
-<h3>Relatie wijzigen</h3>
-<p>U hoeft alleen de velden die gewijzigd moeten worden in de aanvraag mee te sturen. Velden die niet worden genoemd houden hun huidige waarde. Zodra een veld wordt genoemd wordt het wel gecontroleerd, en kan dus voor een foutmelding zorgen. Bij deze foutmelding wordt een code weergegeven. Deze kunt u in combinatie met de variabele 'parameter' gebruiken om een melding aan de gebruiker te tonen. Zie hierboven bij Foutmeldingen wat de codes betekenen.</p>
+<h3>Editing a relation</h3>
+<p>You only have to include the fields that need to be changed in the query. Fields that are not named will keep their current value. As soon as a field is mentioned it does get checked, and thus can cause an error message. This error message displays a code with a message. See above under 'Error messages' what the codes stand for.</p>
 <h4>Parameters</h4>
 <table class="vars">
-<tr><td class="var">list_id <span class="required">(manditory)</span>:</td><td class="explanation">Het id van de lijst waaraan de relatie moet worden gewijzigd</td></tr>
-<tr><td class="var">email:</td><td class="explanation">Het e-mailadres van de te wijzigen relatie</td></tr>
-<tr><td class="var">state</span>:</td><td class="explanation">De nieuwe status van de relatie: active of unsubscribed</td></tr>
-<tr><td class="var">custom_fields:</td><td class="explanation">De waardes van de extra aangemaakte velden</td></tr>
+<tr><td class="var">list_id <span class="required">(mandatory)</span>:</td><td class="explanation">The ID of the list to which the relation must be changed</td></tr>
+<tr><td class="var">email:</td><td class="explanation">The email address of the relation that must be changed</td></tr>
+<tr><td class="var">state</span>:</td><td class="explanation">The new status of the relation: active or unsubscribed</td></tr>
+<tr><td class="var">custom_fields:</td><td class="explanation">The values of the extra created fields</td></tr>
 </table>
 </td><!-- /left -->
 
 <td class="right continue">
-<h4>Definitie</h4>
+<h4>Definition</h4>
 <pre class="code">
 POST https://api.laposta.nl/v2/member/{member_id}
 </pre>
 
-<h4>Voorbeeld aanvraag</h4>
-<p class="info">Dit voorbeeld wijzigt de naam en het aantal kinderen.</p>
+<h4>Example of query</h4>
+<p class="info">This example changes the name and the amount of children</p>
 <pre class="code">
 <? if (empty($lib) || $lib == 'curl') { ?>
 $ curl https://api.laposta.nl/v2/member/9978ydioiZ \
@@ -1371,10 +1371,10 @@ member.CustomFields = new Dictionary<string, string>()
 member = memberService.Update("9978ydioiZ", member);
 <? } ?>
 </pre>
-<p class="info">U kunt hier in plaats van het member_id ook het e-mailadres gebruiken.</p>
-<p class="info">Meerkeuze custom fields die niet manditory zijn kunnen leeggemaakt worden door de variabele wel op te nemen in de aanvraag voor de wijziging, maar zonder waarde.</p>
+<p class="info">Instead of using the member_id, you may also use the email address</p>
+<p class="info">Multiple choice custom fields that are not mandatory can be emptied by including the variable in the change query, but without an assigned value.</p>
 
-<h4>Voorbeeld antwoord</h4>
+<h4>Example of response</h4>
 <pre class="code">
 {
     "member": {
@@ -1402,21 +1402,21 @@ member = memberService.Update("9978ydioiZ", member);
 
 <tr>
 <td class="left continue">
-<h3>Relatie verwijderen</h3>
-<p>Hiermee verwijdert u een relatie definitief. Als de relatie niet bestaat wordt een foutmelding gegeven. Als antwoord krijgt u weer een member object, maar nu met state 'deleted'. Hierna is deze relatie niet nogmaals op te vragen.</p>
+<h3>Deleting a relation</h3>
+<p>This permanently deletes a relation. If the relation does not exist, an error message is displayed. In response you are shown another list object, but now with the state 'deleted'. After having finished this procedure, it is no longer possible for the user to query the relation.</p>
 <h4>Parameters</h4>
 <table class="vars">
-<tr><td class="var">list_id <span class="required">(manditory)</span>:</td><td class="explanation">Het id van de lijst waarin de relatie voorkomt</td></tr>
+<tr><td class="var">list_id <span class="required">(mandatory)</span>:</td><td class="explanation">The ID of the list in which the relation appears</td></tr>
 </table>
 </td><!-- /left -->
 
 <td class="right continue">
-<h4>Definitie</h4>
+<h4>Definition</h4>
 <pre class="code">
 DELETE https://api.laposta.nl/v2/member/{member_id}
 </pre>
 
-<h4>Voorbeeld aanvraag</h4>
+<h4>Example of query</h4>
 <pre class="code">
 <? if (empty($lib) || $lib == 'curl') { ?>
 $ curl https://api.laposta.nl/v2/member/9978ydioiZ?list_id=BaImMu3JZA \
@@ -1434,8 +1434,8 @@ LapostaMember member = new LapostaMember();
 member = memberService.Delete("9978ydioiZ");
 <? } ?>
 </pre>
-<p class="info">U kunt hier in plaats van het member_id ook het e-mailadres gebruiken.</p>
-<h4>Voorbeeld antwoord</h4>
+<p class="info">You may also use the email address here instead of the member_id.</p>
+<h4>Example of response</h4>
 <pre class="code">
 {
     "member": {
@@ -1463,22 +1463,22 @@ member = memberService.Delete("9978ydioiZ");
 
 <tr>
 <td class="left continue">
-<h3>Alle relaties van een lijst opvragen</h3>
-<p>Alle relaties in een array van member objecten. De member objecten zijn opgenomen in een array met de naam 'data'.</p>
+<h3>Querying all relations of a list</h3>
+<p>All fields of a list in an array of member objects. The member objects are compiled in an array named 'data'.</p>
 <h4>Parameters</h4>
 <table class="vars">
-<tr><td class="var">list_id <span class="required">(manditory)</span>:</td><td class="explanation">Het id van de lijst waaraan de relaties opgevraagd worden</td></tr>
-<tr><td class="var">state</span>:</td><td class="explanation">De status van de opgevraagde relaties: active, unsubscribed of cleaned</td></tr>
+<tr><td class="var">list_id <span class="required">(mandatory)</span>:</td><td class="explanation">The ID of the list from which the relations are being queried</td></tr>
+<tr><td class="var">state</span>:</td><td class="explanation">The status of the queried relations: active, unsubscribed or cleaned</td></tr>
 </table>
 </td><!-- /left -->
 
 <td class="right continue">
-<h4>Definitie</h4>
+<h4>Definition</h4>
 <pre class="code">
 GET https://api.laposta.nl/v2/member
 </pre>
 
-<h4>Voorbeeld aanvraag</h4>
+<h4>Example of query</h4>
 <pre class="code">
 <? if (empty($lib) || $lib == 'curl') { ?>
 $ curl 'https://api.laposta.nl/v2/member?list_id=BaImMu3JZA&state=active' \
@@ -1495,7 +1495,7 @@ var members = Enumerable.Empty<LapostaMember>();
 members = memberService.All();
 <? } ?>
 </pre>
-<h4>Voorbeeld antwoord</h4>
+<h4>Example of response</h4>
 <pre class="code">
 {
     "data": [
@@ -1551,66 +1551,66 @@ members = memberService.All();
 <td class="left">
 <a id="webhooks"></a>
 <h2>Webhooks</h2>
-<p>Webhooks vormen een apart onderdeel van de API. Bij de normale API gaat het opvragen van informatie steeds van de ontwikkelaar uit. Bij webhooks is het andersom, en neem Laposta het initiatief om de ontwikkelaar van iets op de hoogte te stellen. Een webhook doet dat door het aanroepen van een URL die door u is opgegeven; in de vorm van een POST met een JSON object met informatie.</p>
-<p>U kunt URL's opgeven voor het toevoegen, wijzigen of verwijderen van relaties. Stel dat u een webhook aanmaakt voor toevoegingen, en iemand meld zich aan via een aanmeldformulier van Laposta, dan krijgt u vrijwel meteen na deze nieuwe aanmelding een POST op de door u opgegeven URL.</p>
-<h3>Toepassing: synchronisatie met andere systemen</h3>
-<p>Onze API wordt het meest gebruikt om het relatiebestand in Laposta te synchroniseren met een andere applicatie, bijvoorbeeld een CMS of een CRM. Het toevoegen aan en wijzigen van relaties aan Laposta wordt dan via de API gedaan (zoals hierboven beschreven). Webhooks stellen uw applicatie op de hoogte van veranderingen in het relatiebestand die binnen Laposta plaats vinden (aan- of afmeldingen, of wijzigingen). Met de combinatie van deze twee functies kunt u de twee bestanden synchroon houden.</p>
-<h3>Het verwerken van webhooks</h3>
-<p>Bij een webhook wordt er een URL aangeroepen op uw server. U bent helemaal vrij in de manier waarop de informatie verwerkt wordt. Om aan te geven dat u een webhook correct ontvangen hebt, moet de server een 200 HTTP statuscode teruggeven. (Dit zal meestal standaard het geval zijn).</p>
+<p>Webhooks are a separate part of the API. With the normal API, the query for information always comes from the developer. With webhooks it is the other way around and Laposta takes the initiative to inform the developer of something. A webhook does this by querying a URL that you have specified; in the form of a POST with a JSON object containing information.</p>
+<p>You can enter URLs for adding, changing or deleting relations. Let us suppose you create a webhook for additions, and someone registers via a Laposta registration form, then almost immediately after this new registration you will receive a POST at the URL you have specified.</p>
+<h3>Application: Syncronization with other systems</h3>
+<p>Our API is mainly used to synchronize the relationship file in Laposta with another application, for example a CMS or a CRM. Adding and changing relations to Laposta is then accomplished via the API (as described above). Webhooks notify your application of changes in the relation file that take place within Laposta (subscriptions, the cancelling of subscriptions, or changes). With the combination of these two functions, you are able to keep the two files in sync.</p>
+<h3>The processing of webhooks</h3>
+<p>With a webhook, a URL is queried on your server. You are completely in control of how that information is processed. To indicate that you have received a webhook correctly, the server must return a 200 HTTP status code. (This will usually be the case by default).</p>
 </td><!-- /left -->
 
 <td class="right">
-<h2>Webhooks registreren</h2>
-<p>U kunt webhooks per lijst registreren. Dit doet u door naar de betreffende lijst te gaan (onder Relaties), en dan naar Kenmerken lijst. Daar vindt u het tabblad Webhooks.</p>
+<h2>Registering webhooks</h2>
+<p>You can register webhooks per list. This is done by going to the appropriate list (under Relations), and proceeding to the Attributes list. There, you will find the tab called Webhooks.</p>
 <p><img src="/doc/assets/static/img/webhooks.jpg" width="500" height="146"></p>
-<p>Voor elke webhook kunt u aangeven voor welke event deze moet worden aangeroepen: het toevoegen van een relatie, het wijzigen van een relatie, of het verwijderen van een relatie. Daarbij geeft u de URL op waarnaar de informatie gePOST moet worden.</p>
-<p>Het is ook mogelijk de webhooks via deze API te beheren; zie daarvoor de informatie hieronder.</p>
+<p>For each webhook, you can specify the event for which it should be queried: adding a relation, modifying a relation, or deleting a relation. In addition, you specify the URL to which the information should be POSTed.</p>
+<p>It is possible to moderate the webhooks through this API; please see the information below.</p>
 <h3>Timing</h3>
-<p>Het kan zijn dat het aanroepen van een webhook niet lukt, bijvoorbeeld omdat uw server niet bereikbaar is of een foutmelding geeft. Laposta blijft de webhook dan nog een aantal keer (7 om precies te zijn) aanbieden. Eerst na 5 minuten, en dan in oplopende intervallen tot ongeveer 14 dagen. Als er dan nog geen contact mogelijk wordt de webhook verwijderd.</p>
-<h3>Bundeling events</h3>
-<p>Elke 5 seconden worden de op dat moment aanwezige webhooks aangeroepen. Als het er meerdere zijn, dan worden ze gebundeld, tot maximaal 1000 events per aanvraag. Zo wordt voorkomen dat uw server overspoeld wordt met aanvragen, bijvoorbeeld bij het importeren van grotere hoeveelheden relaties in Laposta.</p>
+<p>It may happen that calling up a webhook fails, for example, because your server is not accessible or produces an error message. Laposta will then continue to offer the webhook a number of times (7, to be exact). First after 5 minutes and then in increasing intervals of up to about 14 days. If no contact has been made by then, the webhook is deleted.</p>
+<h3>Bundling events</h3>
+<p>Every 5 seconds, the present webhooks are called. If there happen to be several, they are bundled together, up to a maximum of 1000 events per query. This prevents your server from being overloaded with requests, e.g. when importing larger numbers of relations into Laposta.</p>
 </td><!-- /right -->
 </tr>
 
 <tr>
 <td class="left">
-<h3>Opbouw webhook</h3>
-<p>Op de door u opgegeven URL ontvangt u een object in JSON formaat. Dit object bestaat uit een array met de naam <span class="code">data</span>, waarin de verschillende events worden opgenomen. Er kunnen dus meerdere events in een enkele aanvraag zijn opgenomen (zie hierboven onder 'Bundeling events').</p>
-<h4>Velden</h4>
+<h3>Structure of a webhook</h3>
+<p>You will receive an object in JSON format from the URL you have specified. This object consists of an array with the name <span class="code">data</span>, in which the different events are listed. This means that several events can be included in a single query (see above under 'Bundling events')..</p>
+<h4>Fields</h4>
 <table class="vars">
-<tr><td class="var">type:</td><td class="explanation">Het type webhook (steeds <span class="code">member</span>)</td></tr>
-<tr><td class="var">event:</td><td class="explanation">De reden waarom de webhook is aangeroepen. Kan zijn: <span class="code">subscribed</span>, <span class="code">modified</span> of <span class="code">deactivated</span></td></tr>
-<tr><td class="var">data:</td><td class="explanation">De gegevens van het object dat toegevoegd, gewijzigd of verwijderd is. In dit geval een member object.</td></tr>
-<tr><td class="var">info:</td><td class="explanation">Extra informatie over de aanroep van de webhook, zie hieronder</td></tr>
-<tr><td class="var">date_fired:</td><td class="explanation">Het moment waarop deze aanvraag is verzonden</td></tr>
+<tr><td class="var">type:</td><td class="explanation">The type of webhook (always <span class="code">member</span>)</td></tr>
+<tr><td class="var">event:</td><td class="explanation">The reason why the webhook has been queried. Could be: <span class="code">subscribed</span>, <span class="code">modified</span> or <span class="code">deactivated</span></td></tr>
+<tr><td class="var">data:</td><td class="explanation">The data of the object that has been added, edited or deleted. In this case, a member object</td></tr>
+<tr><td class="var">info:</td><td class="explanation">Extra information in regards to the query of the webhook, see below</td></tr>
+<tr><td class="var">date_fired:</td><td class="explanation">The time at which this query was sent</td></tr>
 </table>
-<h4>Velden info object</h4>
+<h4>Fields info object</h4>
 <table class="vars">
-<tr><td class="var">date_event:</td><td class="explanation">Het moment waarop dit event plaatshad (en de webhook getriggerd werd)</td></tr>
-<tr><td class="var">action <span class="optional">(optioneel)</span>:</td><td class="explanation">Extra informatie over het event, verschillende opties bij de diverse events. Bij event <span class="code">subscribed</span>:
+<tr><td class="var">date_event:</td><td class="explanation">The moment this event occurred (and at the same time the moment the webhook was triggered)</td></tr>
+<tr><td class="var">action <span class="optional">(optional)</span>:</td><td class="explanation">Extra information in regards to the event, different options for the various events. For the event <span class="code">subscribed</span>:
 <p>
 <table class="vars">
-<tr><td class="var">subscribed:</td><td class="explanation">Relatie toegevoegd</td></tr>
-<tr><td class="var">rebsubscribed:</td><td class="explanation">Relatie opnieuw toegevoegd</td></tr>
+<tr><td class="var">subscribed:</td><td class="explanation">Relation added</td></tr>
+<tr><td class="var">resubscribed:</td><td class="explanation">Relation readded</td></tr>
 </table>
 </p>
 <p>
-Bij event <span class="code">deactivated</span>:
+For the event <span class="code">deactivated</span>:
 </p>
 <p>
 <table class="vars">
-<tr><td class="var">unsubscribed:</td><td class="explanation">Relatie is afgemeld</td></tr>
-<tr><td class="var">deleted:</td><td class="explanation">Relatie verwijderd</td></tr>
-<tr><td class="var">hardbounce:</td><td class="explanation">Relatie opgeschoond na hard bounce</td></tr>
+<tr><td class="var">unsubscribed:</td><td class="explanation">Relation unsubscribed</td></tr>
+<tr><td class="var">deleted:</td><td class="explanation">Relation deleted</td></tr>
+<tr><td class="var">hardbounce:</td><td class="explanation">Relatin deleted after hard bounce</td></tr>
 </table>
 </p>
 </td></tr>
-<tr><td class="var">source <span class="optional">(optioneel)</span>:</td><td class="explanation">Bron van het event: kan zij <span class="code">app</span> (binnen de webinterface) of <span class="code">external</span> (via bijvoorbeeld een aanmeldformulier)</td></tr>
+<tr><td class="var">source <span class="optional">(optioneel)</span>:</td><td class="explanation">Source of the event: could be <span class="code">app</span> (within the web interface) or <span class="code">external</span> (via, for example, a subscription form)</td></tr>
 </table>
 </td><!-- /left -->
 
 <td class="right">
-<h4>Voorbeeld webhook response</h4>
+<h4>Example of webhook response</h4>
 <pre class="code">
 {
     "data": [
@@ -1642,7 +1642,7 @@ Bij event <span class="code">deactivated</span>:
             }
         }
     ],
-    "date_requested": "2012-08-17 20:56:34
+    "date_queried": "2012-08-17 20:56:34
 }
 </pre>
 </td><!-- /right -->
@@ -1651,12 +1651,12 @@ Bij event <span class="code">deactivated</span>:
 <tr>
 <td class="left">
 <a id="fields"></a>
-<h2>Webhooks beheren</h2>
-<p>U kunt de webhooks ook met de API beheren. Hieronder staat uitgelegd hoe u webhooks kunt opvragen, toevoegen en wijzigen.</p>
+<h2>Managing webhooks</h2>
+<p>You can also manage the webhooks with the API. Below is explained how to retrieve, add and edit webhooks.</p>
 </td><!-- /left -->
 
 <td class="right">
-<h2>URL patronen</h2>
+<h2>URL patterns</h2>
 <ul class="code">
 <li>/v2/webhook</li>
 <li>/v2/webhook/{webhook_id}</li>
@@ -1666,22 +1666,22 @@ Bij event <span class="code">deactivated</span>:
 
 <tr>
 <td class="left continue">
-<h3>Het webhook object</h3>
-<h4>Velden</h4>
+<h3>The webhook object</h3>
+<h4>Fields</h4>
 <table class="vars">
-<tr><td class="var">webhook_id:</td><td class="explanation">Het id van deze webhook</td></tr>
-<tr><td class="var">list_id:</td><td class="explanation">Het id van de lijst waartoe het veld behoort</td></tr>
-<tr><td class="var">created:</td><td class="explanation">Moment van aanmaken</td></tr>
-<tr><td class="var">modified:</td><td class="explanation">Moment van laatste wijziging</td></tr>
-<tr><td class="var">state:</td><td class="explanation">De status van deze webhook: <code>active</code> of <code>deleted</code></td></tr>
-<tr><td class="var">event:</td><td class="explanation">Wanneer wordt de webhook aangeroepen? (<code>subscribed</code>, <code>modified</code> of <code>deactivated</code>)</td></tr>
-<tr><td class="var">url:</td><td class="explanation">De aan te roepen url</td></tr>
-<tr><td class="var">blocked:</td><td class="explanation">Is het aanroepen van de webhook (tijdelijk) geblokkeerd? (<code>true</code> of <code>false</code>)</td></tr>
+<tr><td class="var">webhook_id:</td><td class="explanation">The ID of this webhook</td></tr>
+<tr><td class="var">list_id:</td><td class="explanation">The ID of the list to which the field belongs</td></tr>
+<tr><td class="var">created:</td><td class="explanation">Date and time of creation</td></tr>
+<tr><td class="var">modified:</td><td class="explanation">Date and time of last change made</td></tr>
+<tr><td class="var">state:</td><td class="explanation">The status of this webhook: <code>active</code> or <code>deleted</code></td></tr>
+<tr><td class="var">event:</td><td class="explanation">When will the webhook be queried? (<code>subscribed</code>, <code>modified</code> or <code>deactivated</code>)</td></tr>
+<tr><td class="var">url:</td><td class="explanation">The URL to be accessed</td></tr>
+<tr><td class="var">blocked:</td><td class="explanation">Is the accessing of the webhook (temporarily) blocked? (<code>true</code> or <code>false</code>)</td></tr>
 </table>
 </td><!-- /left -->
 
 <td class="right continue">
-<h4>Voorbeeld webhook object</h4>
+<h4>Example of webhook object</h4>
 <pre class="code">
 {
     "webhook": {
@@ -1701,24 +1701,24 @@ Bij event <span class="code">deactivated</span>:
 
 <tr>
 <td class="left continue">
-<h3>Webhook toevoegen</h3>
-<p>Als er iets niet klopt aan de meegegeven parameters dan wordt bij de foutmelding een code en een melding weergegeven. Zie hierboven bij Foutmeldingen wat de codes betekenen.</p>
+<h3>Adding a webhook</h3>
+<p>If there is something wrong with the parameters provided, a code is displayed with an error message. See above under 'Error messages' what the codes stand for.</p>
 <h4>Parameters</h4>
 <table class="vars">
-<tr><td class="var">list_id <span class="required">(manditory)</span>:</td><td class="explanation">Het id van de lijst waartoe het veld behoort</td></tr>
-<tr><td class="var">event <span class="required">(manditory)</span>:</td><td class="explanation">Wanneer wordt de webhook aangeroepen? (<code>subscribed</code>, <code>modified</code> of <code>deactivated</code>)</td></tr>
-<tr><td class="var">url <span class="required">(manditory)</span>:</td><td class="explanation">De aan te roepen url</td></tr>
-<tr><td class="var">blocked <span class="required">(manditory)</span>:</td><td class="explanation">Is het aanroepen van de webhook (tijdelijk) geblokkeerd? (<code>true</code> of <code>false</code>)</td></tr>
+<tr><td class="var">list_id <span class="required">(mandatory)</span>:</td><td class="explanation">The ID of the list to which the field belongs</td></tr>
+<tr><td class="var">event <span class="required">(mandatory)</span>:</td><td class="explanation">When will the webhook be queried? (<code>subscribed</code>, <code>modified</code> of <code>deactivated</code>)</td></tr>
+<tr><td class="var">url <span class="required">(mandatory)</span>:</td><td class="explanation">The URL to be accessed</td></tr>
+<tr><td class="var">blocked <span class="required">(mandatory)</span>:</td><td class="explanation">Is the accessing of the webhook (temporarily) blocked? (<code>true</code> or <code>false</code>)</td></tr>
 </table>
 </td><!-- /left -->
 
 <td class="right continue">
-<h4>Definitie</h4>
+<h4>Definition</h4>
 <pre class="code">
 POST https://api.laposta.nl/v2/webhook
 </pre>
 
-<h4>Voorbeeld aanvraag</h4>
+<h4>Example of query</h4>
 <pre class="code">
 <? if (empty($lib) || $lib == 'curl') { ?>
 $ curl https://api.laposta.nl/v2/webhook \
@@ -1747,7 +1747,7 @@ webhook.Blocked = false;
 webhook = webhookService.Create(webhook);
 <? } ?>
 </pre>
-<h4>Voorbeeld antwoord</h4>
+<h4>Example of response</h4>
 <pre class="code">
 {
     "webhook": {
@@ -1767,21 +1767,21 @@ webhook = webhookService.Create(webhook);
 
 <tr>
 <td class="left continue">
-<h3>Webhook opvragen</h3>
-<p>Alle informatie over een webhook.</p>
+<h3>Querying a webhook</h3>
+<p>All information about a webhook</p>
 <h4>Parameters</h4>
 <table class="vars">
-<tr><td class="var">list_id <span class="required">(manditory)</span>:</td><td class="explanation">Het id van de lijst waarbij het veld hoort</td></tr>
-<tr><td class="var">webhook_id<span class="required">(manditory)</span>:</td><td class="explanation">Het id van het op te vragen veld</td></tr>
+<tr><td class="var">list_id <span class="required">(mandatory)</span>:</td><td class="explanation">The ID of the list to which the field belongs</td></tr>
+<tr><td class="var">webhook_id<span class="required">(mandatory)</span>:</td><td class="explanation">The ID of the list to be queried</td></tr>
 </table>
 </td><!-- /left -->
 
 <td class="right continue">
-<h4>Definitie</h4>
+<h4>Definition</h4>
 <pre class="code">
 GET https://api.laposta.nl/v2/webhook/{webhook_id}
 </pre>
-<h4>Voorbeeld aanvraag</h4>
+<h4>Example of query</h4>
 <pre class="code">
 <? if (empty($lib) || $lib == 'curl') { ?>
 $ curl https://api.laposta.nl/v2/webhook/cW5ls8IVJl?list_id=BaImMu3JZA \
@@ -1798,7 +1798,7 @@ LapostaWebhook webhook = new LapostaWebhook();
 webhook = webhookService.Get("cW5ls8IVJl");
 <? } ?>
 </div>
-<h4>Voorbeeld antwoord</h4>
+<h4>Example of response</h4>
 <pre class="code">
 {
     "webhook": {
@@ -1818,26 +1818,26 @@ webhook = webhookService.Get("cW5ls8IVJl");
 
 <tr>
 <td class="left continue">
-<h3>Webhook wijzigen</h3>
-<p>U hoeft alleen de velden die gewijzigd moeten worden in de aanvraag mee te sturen. Velden die niet worden genoemd houden hun huidige waarde. Zodra een veld wordt genoemd wordt het wel gecontroleerd, en kan dus voor een foutmelding zorgen. Bij deze foutmelding wordt een code weergegeven met een melding. Zie hierboven bij Foutmeldingen wat de codes betekenen.</p>
+<h3>Editing a webhook</h3>
+<p>If there is something wrong with the parameters provided, a code is displayed with an error message. Fields that are not mentioned will keep their current value fields keep their current value. As soon as a field is mentioned it does get checked, and thus can cause an error message. This error message displays a code with a message. See above under 'Error messages' what the codes stand for. See above under 'Error messages' what the codes stand for.</p>
 <h4>Parameters</h4>
 <table class="vars">
-<tr><td class="var">list_id <span class="required">(manditory)</span>:</td><td class="explanation">Het id van de lijst waartoe het veld behoort</td></tr>
-<tr><td class="var">webhook_id<span class="required">(manditory)</span>:</td><td class="explanation">Het id van het op te vragen veld</td></tr>
-<tr><td class="var">event:</td><td class="explanation">Wanneer wordt de webhook aangeroepen? (<code>subscribed</code>, <code>modified</code> of <code>deactivated</code>)</td></tr>
-<tr><td class="var">url:</td><td class="explanation">De aan te roepen url</td></tr>
-<tr><td class="var">blocked:</td><td class="explanation">Is het aanroepen van de webhook (tijdelijk) geblokkeerd? (<code>true</code> of <code>false</code>)</td></tr>
+<tr><td class="var">list_id <span class="required">(mandatory)</span>:</td><td class="explanation">The ID of the list to which the field belongs</td></tr>
+<tr><td class="var">webhook_id<span class="required">(mandatory)</span>:</td><td class="explanation">The ID of the list to be queried</td></tr>
+<tr><td class="var">event:</td><td class="explanation">When will the webhook be queried? (<code>subscribed</code>, <code>modified</code> or <code>deactivated</code>)</td></tr>
+<tr><td class="var">url:</td><td class="explanation">The URL to be accessed</td></tr>
+<tr><td class="var">blocked:</td><td class="explanation">Is the accessing of the webhook (temporarily) blocked? (<code>true</code> or <code>false</code>)</td></tr>
 </table>
 </td><!-- /left -->
 
 <td class="right continue">
-<h4>Definitie</h4>
+<h4>Definition</h4>
 <pre class="code">
 POST https://api.laposta.nl/v2/webhook/{webhook_id}
 </pre>
 
-<h4>Voorbeeld aanvraag</h4>
-<p class="info">Dit voorbeeld wijzigt de url.</p>
+<h4>Example of query</h4>
+<p class="info">This example changes the URL</p>
 <pre class="code">
 <? if (empty($lib) || $lib == 'curl') { ?>
 $ curl https://api.laposta.nl/v2/webhook/JH_y9dEsfH \
@@ -1860,7 +1860,7 @@ webhook.Url = "http://example.com/dir/webhook.pl";
 webhook = webhookService.Update("iH52rJwguo", webhook);
 <? } ?>
 </pre>
-<h4>Voorbeeld antwoord</h4>
+<h4>Example of response</h4>
 <pre class="code">
 {
     "webhook": {
@@ -1880,22 +1880,22 @@ webhook = webhookService.Update("iH52rJwguo", webhook);
 
 <tr>
 <td class="left continue">
-<h3>Webhook verwijderen</h3>
-<p>Hiermee verwijdert u een webhook definitief. Eventuele uitstaande aanvragen van de webhook worden nog wel afgerond. Als een veld niet bestaat wordt een foutmelding gegeven. Als antwoord krijgt u weer een webhook object, maar nu met state 'deleted'. Hierna is de webhook niet nogmaals op te vragen.</p>
+<h3>Deleting a webhook</h3>
+<p>This permanently deletes a webhook. Potentially outstanding requests from the webhook will still be completed. If the field does not exist, an error message is displayed. In response you are shown another webhook object, but now with the state 'deleted'. After having finished this procedure, it is no longer possible for the user to query the webhook.</p>
 <h4>Parameters</h4>
 <table class="vars">
-<tr><td class="var">webhook_id <span class="required">(manditory)</span>:</td><td class="explanation">Het id van de te verwijderen webhook</td></tr>
-<tr><td class="var">list_id <span class="required">(manditory)</span>:</td><td class="explanation">Het id van de lijst waartoe de webhook behoort</td></tr>
+	<tr><td class="var">field_id <span class="required">(mandatory)</span>:</td><td class="explanation">The ID of the webhook to be deleted</td></tr>
+	<tr><td class="var">list_id <span class="required">(mandatory)</span>:</td><td class="explanation">The ID of the list to which the webhook belongs</td></tr>
 </table>
 </td><!-- /left -->
 
 <td class="right continue">
-<h4>Definitie</h4>
+<h4>Definition</h4>
 <pre class="code">
 DELETE https://api.laposta.nl/v2/webhook/{webhook_id}
 </pre>
 
-<h4>Voorbeeld aanvraag</h4>
+<h4>Example of query</h4>
 <pre class="code">
 <? if (empty($lib) || $lib == 'curl') { ?>
 $ curl https://api.laposta.nl/v2/webhook/8HdlEGtlml?list_id=BaImMu3JZA \
@@ -1913,7 +1913,7 @@ LapostaWebhook webhook = new LapostaWebhook();
 webhook = webhookService.Delete("8HdlEGtlml");
 <? } ?>
 </pre>
-<h4>Voorbeeld antwoord</h4>
+<h4>Example of response</h4>
 <pre class="code">
 {
     "webhook": {
@@ -1933,21 +1933,21 @@ webhook = webhookService.Delete("8HdlEGtlml");
 
 <tr>
 <td class="left continue">
-<h3>Alle webhooks van een lijst opvragen</h3>
-<p>Alle webhooks van een lijst in een array van webhook objecten. De webhook objecten zijn opgenomen in een array met de naam 'data'.</p>
+<h3>Querying all webhooks of a list</h3>
+<p>All webhooks of a list in an array of member objects. The webhook objects are compiled in an array named 'data'.</p>
 <h4>Parameters</h4>
 <table class="vars">
-<tr><td class="var">list_id <span class="required">(manditory)</span>:</td><td class="explanation">Het id van de lijst waarbij de webhooks horen</td></tr>
+<tr><td class="var">list_id <span class="required">(mandatory)</span>:</td><td class="explanation">The ID of the list to which the webhooks belong</td></tr>
 </table>
 </td><!-- /left -->
 
 <td class="right continue">
-<h4>Definitie</h4>
+<h4>Definition</h4>
 <pre class="code">
 GET https://api.laposta.nl/v2/webhook
 </pre>
 
-<h4>Voorbeeld aanvraag</h4>
+<h4>Example of query</h4>
 <pre class="code">
 <? if (empty($lib) || $lib == 'curl') { ?>
 $ curl https://api.laposta.nl/v2/webhook?list_id=BaImMu3JZA \
@@ -1964,7 +1964,7 @@ var webhooks = Enumerable.Empty<LapostaWebhook>();
 webhooks = webhookService.All();
 <? } ?>
 </pre>
-<h4>Voorbeeld antwoord</h4>
+<h4>Example of response</h4>
 <pre class="code">
 {
     "data": [
@@ -2004,12 +2004,12 @@ webhooks = webhookService.All();
 <tr>
 <td class="left">
 <a id="campaigns"></a>
-<h2>Campagnes</h2>
-<p>Campagnes opvragen, aanmaken, vullen en versturen.</p>
+<h2>Campaigns</h2>
+<p>Retrieving, creating, filling and sending campaigns.</p>
 </td><!-- /left -->
 
 <td class="right">
-<h2>URL patronen</h2>
+<h2>URL patterns</h2>
 <ul class="code">
 <li>/v2/campaign</li>
 <li>/v2/campaign/{campaign_id}</li>
@@ -2022,30 +2022,30 @@ webhooks = webhookService.All();
 
 <tr>
 <td class="left continue">
-<h3>Het  object</h3>
-<h4>Velden</h4>
+<h3>The campaign object</h3>
+<h4>Fields</h4>
 <table class="vars">
-<tr><td class="var">account_id:</td><td class="explanation">Het id van dit account</td></tr>
-<tr><td class="var">campaign_id:</td><td class="explanation">Het id van de campagne</td></tr>
-<tr><td class="var">created:</td><td class="explanation">Moment van aanmaken</td></tr>
-<tr><td class="var">modified:</td><td class="explanation">Moment van laatste wijziging</td></tr>
-<tr><td class="var">type:</td><td class="explanation">Het soort campagne (op dit moment alleen <code>regular</code>)</td></tr>
-<tr><td class="var">delivery_requested:</td><td class="explanation">Wanneer verzenden?</td></tr>
-<tr><td class="var">delivery_started:</td><td class="explanation">Start laatste keer verzenden</td></tr>
-<tr><td class="var">delivery_ended:</td><td class="explanation">Einde laatste keer verzenden</td></tr>
-<tr><td class="var">name:</td><td class="explanation">Interne naam campagne</td></tr>
-<tr><td class="var">subject:</td><td class="explanation">Onderwerpregel</td></tr>
-<tr><td class="var">from:</td><td class="explanation">Afzender (naam en e-mailadres)</td></tr>
-<tr><td class="var">reply_to:</td><td class="explanation">E-mailadres voor reacties</td></tr>
-<tr><td class="var">list_ids:</td><td class="explanation">Gekoppelde lijsten</td></tr>
-<tr><td class="var">stats:</td><td class="explanation">Gekoppelde webstatistieken</td></tr>
-<tr><td class="var">web:</td><td class="explanation">Url naar webversie</td></tr>
-<tr><td class="var">screenshot:</td><td class="explanation">Screenshots van campagne</td></tr>
+<tr><td class="var">account_id:</td><td class="explanation">The ID of this account</td></tr>
+<tr><td class="var">campaign_id:</td><td class="explanation">The ID of this campaign</td></tr>
+<tr><td class="var">created:</td><td class="explanation">Date and time of creation</td></tr>
+<tr><td class="var">modified:</td><td class="explanation">Date and time of last change made</td></tr>
+<tr><td class="var">type:</td><td class="explanation">The type of campaign (currently only possible: <code>regular</code>)</td></tr>
+<tr><td class="var">delivery_queried:</td><td class="explanation">When to send</td></tr>
+<tr><td class="var">delivery_started:</td><td class="explanation">Start of last transmission</td></tr>
+<tr><td class="var">delivery_ended:</td><td class="explanation">End of last transmission</td></tr>
+<tr><td class="var">name:</td><td class="explanation">Internal name of campaign</td></tr>
+<tr><td class="var">subject:</td><td class="explanation">Subject line</td></tr>
+<tr><td class="var">from:</td><td class="explanation">Sender (name en email address)</td></tr>
+<tr><td class="var">reply_to:</td><td class="explanation">Email address for receiving replies</td></tr>
+<tr><td class="var">list_ids:</td><td class="explanation">Linked lists</td></tr>
+<tr><td class="var">stats:</td><td class="explanation">Linked web statistics</td></tr>
+<tr><td class="var">web:</td><td class="explanation">URL to web version</td></tr>
+<tr><td class="var">screenshot:</td><td class="explanation">Screenshots of campaign</td></tr>
 </table>
 </td><!-- /left -->
 
 <td class="right continue">
-<h4>Voorbeeld campaign object</h4>
+<h4>Example of campaign object</h4>
 <pre class="code">
 {
     "campaign": {
@@ -2054,11 +2054,11 @@ webhooks = webhookService.All();
         "created": "2014-12-11 11:26:19",
         "modified": "2014-12-11 11:27:31",
         "type": "regular",
-        "delivery_requested": null,
+        "delivery_queried": null,
         "delivery_started": "2014-12-11 11:27:29",
         "delivery_ended": "2014-12-11 11:27:31",
-        "name": "Mijn eerste campagne",
-        "subject": "Mijn eerste campagne",
+        "name": "My first campaign",
+        "subject": "My first campaign",
         "from": {
             "name": "Laposta API",
             "email": "api@laposta.nl"
@@ -2085,29 +2085,29 @@ webhooks = webhookService.All();
 
 <tr>
 <td class="left continue">
-<h3>Campagne aanmaken</h3>
+<h3>Creating a campaign</h3>
 <h4>Parameters</h4>
 <table class="vars">
-<tr><td class="var">type <span class="required">(manditory)</span>:</td><td class="explanation">Type campagne (moet zijn: <code>regular</code>)</td></tr>
-<tr><td class="var">name <span class="required">(manditory)</span>:</td><td class="explanation">Een naam voor deze campagne, voor intern gebruik</td></tr>
-<tr><td class="var">subject <span class="required">(manditory)</span>:</td><td class="explanation">De onderwerpregel</td></tr>
-<tr><td class="var">from[name] <span class="required">(manditory)</span>:</td><td class="explanation">De naam van de afzender</td></tr>
-<tr><td class="var">from[email] <span class="required">(manditory)</span>:</td><td class="explanation">Het e-mailadres van de afzender (dit moet een binnen het programma goedgekeurd afzendadres zijn)</td></tr>
-<tr><td class="var">reply_to:</td><td class="explanation">Het e-mailadres bij beantwoorden</td></tr>
-<tr><td class="var">list_ids <span class="required">(manditory)</span>:</td><td class="explanation">Ontvangers, array van list_id's</td></tr>
-<tr><td class="var">stats[ga]:</td><td class="explanation">Koppel Google Analytics (<code>true</code> of <code>false</code>)</td></tr>
-<tr><td class="var">stats[mtrack]:</td><td class="explanation">Koppel Mtrack (<code>true</code> of <code>false</code>)</td></tr>
+<tr><td class="var">type <span class="required">(mandatory)</span>:</td><td class="explanation">Type of campaign (must be set to: <code>regular</code>)</td></tr>
+<tr><td class="var">name <span class="required">(mandatory)</span>:</td><td class="explanation">A name for this campaign for internal use</td></tr>
+<tr><td class="var">subject <span class="required">(mandatory)</span>:</td><td class="explanation">Subject line</td></tr>
+<tr><td class="var">from[name] <span class="required">(mandatory)</span>:</td><td class="explanation">The name of the sender</td></tr>
+<tr><td class="var">from[email] <span class="required">(mandatory)</span>:</td><td class="explanation">The email address of the sender (must be a sender address approved within the program)</td></tr>
+<tr><td class="var">reply_to:</td><td class="explanation">Email address for receiving replies</td></tr>
+<tr><td class="var">list_ids <span class="required">(mandatory)</span>:</td><td class="explanation">Recipients, array of list_ids</td></tr>
+<tr><td class="var">stats[ga]:</td><td class="explanation">Link Google Analytics (<code>true</code> or <code>false</code>)</td></tr>
+<tr><td class="var">stats[mtrack]:</td><td class="explanation">Link Mtrack (<code>true</code> or <code>false</code>)</td></tr>
 </table>
-<p class="info">De campagne is na de aanvraag nog niet gevuld of ingepland. Gebruik hiervoor de <code>/content</code> en <code>/action</code> patronen, zie hieronder.</p>
+<p class="info">The campaign has not yet been filled or scheduled after the query. Use the <code>/content</code> and <code>/action</code> patterns in order to do this, see below.</p>
 </td><!-- /left -->
 
 <td class="right continue">
-<h4>Definitie</h4>
+<h4>Definition</h4>
 <pre class="code">
 POST https://api.laposta.nl/v2/campaign
 </pre>
 
-<h4>Voorbeeld aanvraag</h4>
+<h4>Example of query</h4>
 <pre class="code">
 <? if (empty($lib) || $lib == 'curl') { ?>
 $ curl https://api.laposta.nl/v2/campaign \
@@ -2143,10 +2143,10 @@ $result = $campaign->create(array(
 	)
 ));
 <? } else if ($lib == 'dotnet') { ?>
-[voor deze functionaliteit is nog geen .NET wrapper beschikbaar]
+[No .NET wrapper is available yet for this feature]
 <? } ?>
 </pre>
-<h4>Voorbeeld antwoord</h4>
+<h4>Example of response</h4>
 <pre class="code">
 {
     "campaign": {
@@ -2155,7 +2155,7 @@ $result = $campaign->create(array(
         "created": "2016-05-16 21:24:12",
         "modified": null,
         "type": "regular",
-        "delivery_requested": null,
+        "delivery_queried": null,
         "delivery_started": null,
         "delivery_ended": null,
         "name": "Test via API",
@@ -2186,20 +2186,20 @@ $result = $campaign->create(array(
 
 <tr>
 <td class="left continue">
-<h3>Campagne opvragen</h3>
-<p>Alle informatie over een campagne.</p>
+<h3>Querying a campaign</h3>
+<p>All information about a campaign</p>
 <h4>Parameters</h4>
 <table class="vars">
-<tr><td class="var">campaign_id <span class="required">(manditory)</span>:</td><td class="explanation">Het id van de campagne</td></tr>
+<tr><td class="var">campaign_id <span class="required">(mandatory)</span>:</td><td class="explanation">The ID of the campaign</td></tr>
 </table>
 </td><!-- /left -->
 
 <td class="right continue">
-<h4>Definitie</h4>
+<h4>Definition</h4>
 <pre class="code">
 GET https://api.laposta.nl/v2/campaign/{campaign_id}
 </pre>
-<h4>Voorbeeld aanvraag</h4>
+<h4>Example of query</h4>
 <pre class="code">
 <? if (empty($lib) || $lib == 'curl') { ?>
 $ curl https://api.laposta.nl/v2/campaign/njhgaf61ye \
@@ -2210,10 +2210,10 @@ Laposta::setApiKey('JdMtbsMq2jqJdQZD9AHC');
 $campaign = new Laposta_Campaign();
 $result = $campaign->get('njhgaf61ye');
 <? } else if ($lib == 'dotnet') { ?>
-[voor deze functionaliteit is nog geen .NET wrapper beschikbaar]
+[No .NET wrapper is available yet for this feature]
 <? } ?>
 </div>
-<h4>Voorbeeld antwoord</h4>
+<h4>Example of response</h4>
 <pre class="code">
 {
     "campaign": {
@@ -2222,11 +2222,11 @@ $result = $campaign->get('njhgaf61ye');
         "created": "2014-12-11 11:26:19",
         "modified": "2014-12-11 11:27:31",
         "type": "regular",
-        "delivery_requested": null,
+        "delivery_queried": null,
         "delivery_started": "2014-12-11 11:27:29",
         "delivery_ended": "2014-12-11 11:27:31",
-        "name": "Mijn eerste campagne",
-        "subject": "Mijn eerste campagne",
+        "name": "My first campaign",
+        "subject": "My first campaign",
         "from": {
             "name": "Laposta API",
             "email": "api@laposta.nl"
@@ -2252,30 +2252,30 @@ $result = $campaign->get('njhgaf61ye');
 
 <tr>
 <td class="left continue">
-<h3>Campagne wijzigen</h3>
-<p>U hoeft alleen de velden die gewijzigd moeten worden in de aanvraag mee te sturen. Velden die niet worden genoemd houden hun huidige waarde. Zodra een veld wordt genoemd wordt het wel gecontroleerd, en kan dus voor een foutmelding zorgen. Bij deze foutmelding wordt een code weergegeven met een melding. Zie hierboven bij Foutmeldingen wat de codes betekenen.</p>
+<h3>Editing a campaign</h3>
+<p>You only have to submit the fields that require to be edited in the application. Fields that are not mentioned will keep their current value fields keep their current value. As soon as a field is mentioned it does get checked, and thus can cause an error message. This error message displays a code with a message. See above under 'Error messages' what the codes stand for.</p>
 <h4>Parameters</h4>
 <table class="vars">
-<tr><td class="var">campaign_id <span class="required">(manditory)</span>:</td><td class="explanation">Het id van de campagne die gewijzigd moet worden</td></tr>
-<tr><td class="var">name:</td><td class="explanation">Een naam voor deze campagne, voor intern gebruik</td></tr>
-<tr><td class="var">subject:</td><td class="explanation">De onderwerpregel</td></tr>
-<tr><td class="var">from[name]:</td><td class="explanation">De naam van de afzender</td></tr>
-<tr><td class="var">from[email]:</td><td class="explanation">Het e-mailadres van de afzender (dit moet een binnen het programma goedgekeurd afzendadres zijn)</td></tr>
-<tr><td class="var">reply_to:</td><td class="explanation">Het e-mailadres bij beantwoorden</td></tr>
-<tr><td class="var">list_ids:</td><td class="explanation">Ontvangers, array van list_id's</td></tr>
-<tr><td class="var">stats[ga]:</td><td class="explanation">Koppel Google Analytics (<code>true</code> of <code>false</code>)</td></tr>
-<tr><td class="var">stats[mtrack]:</td><td class="explanation">Koppel Mtrack (<code>true</code> of <code>false</code>)</td></tr>
+<tr><td class="var">campaign_id <span class="required">(mandatory)</span>:</td><td class="explanation">The ID of the campaign that has to be edited</td></tr>
+<tr><td class="var">name:</td><td class="explanation">A name for this campaign for internal use</td></tr>
+<tr><td class="var">subject:</td><td class="explanation">Subject line</td></tr>
+<tr><td class="var">from[name]:</td><td class="explanation">The name of the sender</td></tr>
+<tr><td class="var">from[email]:</td><td class="explanation">The email address of the sender (must be a sender address approved within the program)</td></tr>
+<tr><td class="var">reply_to:</td><td class="explanation">Email address for receiving replies</td></tr>
+<tr><td class="var">list_ids:</td><td class="explanation">Recipients, array of list_ids</td></tr>
+<tr><td class="var">stats[ga]:</td><td class="explanation">Link Google Analytics (<code>true</code> or <code>false</code>)</td></tr>
+<tr><td class="var">stats[mtrack]:</td><td class="explanation">Link Mtrack (<code>true</code> or <code>false</code>)</td></tr>
 </table>
 </td><!-- /left -->
 
 <td class="right continue">
-<h4>Definitie</h4>
+<h4>Definition</h4>
 <pre class="code">
 POST https://api.laposta.nl/v2/campaign/{campaign_id}
 </pre>
 
-<h4>Voorbeeld aanvraag</h4>
-<p class="info">Dit voorbeeld wijzigt de onderwerpregel.</p>
+<h4>Example of query</h4>
+<p class="info">This example changes the subject line.</p>
 <pre class="code">
 <? if (empty($lib) || $lib == 'curl') { ?>
 $ curl https://api.laposta.nl/v2/campaign/pbrqulw2tc \
@@ -2288,10 +2288,10 @@ $result = $campaign->update('pbrqulw2tc', array(
 	'subject' => 'Hello from us, modified'
 ));
 <? } else if ($lib == 'dotnet') { ?>
-[voor deze functionaliteit is nog geen .NET wrapper beschikbaar]
+No .NET wrapper is available yet for this feature
 <? } ?>
 </pre>
-<h4>Voorbeeld antwoord</h4>
+<h4>Example of response</h4>
 <pre class="code">
 {
     "campaign": {
@@ -2300,7 +2300,7 @@ $result = $campaign->update('pbrqulw2tc', array(
         "created": "2016-05-16 21:24:12",
         "modified": "2016-05-16 21:51:27",
         "type": "regular",
-        "delivery_requested": null,
+        "delivery_queried": null,
         "delivery_started": null,
         "delivery_ended": null,
         "name": "Test via API",
@@ -2331,22 +2331,22 @@ $result = $campaign->update('pbrqulw2tc', array(
 
 <tr>
 <td class="left continue">
-<h3>Campagne verwijderen</h3>
-<p>Hiermee verwijdert u een campagne. Campagnes die nog niet verzonden zijn worden definitief verwijderd. Campagnes die verzonden zijn worden pas na 180 dagen definitief verwijderd. In de tussentijd zijn ze te herstellen in het overzicht van campagnes in ons programma.</p>
-<p>Als antwoord krijgt u het campaign object, maar nu met state 'deleted'. Hierna is de campagne niet nogmaals op te vragen.</p>
+<h3>Deleting a campaign</h3>
+<p>This deletes a campaign. Unsent campaigns will be permanently deleted. Campaigns that have been sent are permanently deleted only after 180 days. In the meantime, they can be restored in the overview of campaigns in our program.</p>
+<p>In response you are shown another campaign object, but now with the state 'deleted'. After having finished this procedure, it is no longer possible for the user to query the campaign.</p>
 <h4>Parameters</h4>
 <table class="vars">
-<tr><td class="var">campaign_id <span class="required">(manditory)</span>:</td><td class="explanation">Het id van de te verwijderen campagne</td></tr>
+<tr><td class="var">campaign_id <span class="required">(mandatory)</span>:</td><td class="explanation">The ID of the campaign to be deleted</td></tr>
 </table>
 </td><!-- /left -->
 
 <td class="right continue">
-<h4>Definitie</h4>
+<h4>Definition</h4>
 <pre class="code">
 DELETE https://api.laposta.nl/v2/campaign/{campaign_id}
 </pre>
 
-<h4>Voorbeeld aanvraag</h4>
+<h4>Example of query</h4>
 <pre class="code">
 <? if (empty($lib) || $lib == 'curl') { ?>
 $ curl https://api.laposta.nl/v2/campaign/az0ndh7akc \
@@ -2358,10 +2358,10 @@ Laposta::setApiKey('JdMtbsMq2jqJdQZD9AHC');
 $campaign = new Laposta_Campaign();
 $result = $campaign->delete('az0ndh7akc');
 <? } else if ($lib == 'dotnet') { ?>
-[voor deze functionaliteit is nog geen .NET wrapper beschikbaar]
+[No .NET wrapper is available yet for this feature]
 <? } ?>
 </pre>
-<h4>Voorbeeld antwoord</h4>
+<h4>Example of response</h4>
 <pre class="code">
 {
     "campaign": {
@@ -2370,7 +2370,7 @@ $result = $campaign->delete('az0ndh7akc');
         "created": "2016-05-16 22:44:49",
         "modified": "2016-05-16 22:44:49",
         "type": "regular",
-        "delivery_requested": null,
+        "delivery_queried": null,
         "delivery_started": null,
         "delivery_ended": null,
         "name": "Test API 16-05-2016 22:44:49",
@@ -2402,21 +2402,21 @@ $result = $campaign->delete('az0ndh7akc');
 
 <tr>
 <td class="left continue">
-<h3>Alle campagnes van een account opvragen</h3>
-<p>Alle campagnes in een array van campaign objecten. De campaign objecten zijn opgenomen in een array met de naam 'data'.</p>
+<h3>Querying all campaigns of an account</h3>
+<p>All campaigns in an array of campaign objects. The campaign objects have been ordered in an array with the name 'data'.</p>
 <h4>Parameters</h4>
 <table class="vars">
-<tr><td>Geen.</td></tr>
+<tr><td>None.</td></tr>
 </table>
 </td><!-- /left -->
 
 <td class="right continue">
-<h4>Definitie</h4>
+<h4>Definition</h4>
 <pre class="code">
 GET https://api.laposta.nl/v2/campaign
 </pre>
 
-<h4>Voorbeeld aanvraag</h4>
+<h4>Example of query</h4>
 <pre class="code">
 <? if (empty($lib) || $lib == 'curl') { ?>
 $ curl https://api.laposta.nl/v2/campaign \
@@ -2427,10 +2427,10 @@ Laposta::setApiKey('JdMtbsMq2jqJdQZD9AHC');
 $campaign = new Laposta_Campaign();
 $result = $campaign->all();
 <? } else if ($lib == 'dotnet') { ?>
-[voor deze functionaliteit is nog geen .NET wrapper beschikbaar]
+[No .NET wrapper is available yet for this feature]
 <? } ?>
 </pre>
-<h4>Voorbeeld antwoord</h4>
+<h4>Example of response</h4>
 <pre class="code">
 {
     "data": [
@@ -2441,11 +2441,11 @@ $result = $campaign->all();
                 "created": "2014-12-11 11:26:19",
                 "modified": "2014-12-11 11:27:31",
 		"type": "regular",
-		"delivery_requested": null,
+		"delivery_queried": null,
                 "delivery_started": "2014-12-11 11:27:29",
                 "delivery_ended": "2014-12-11 11:27:31",
-                "name": "Mijn eerste campagne",
-                "subject": "Mijn eerste campagne",
+                "name": "My first campaign",
+                "subject": "My first campaign",
                 "from": {
                     "name": "Laposta API",
                     "email": "api@laposta.nl"
@@ -2472,7 +2472,7 @@ $result = $campaign->all();
                 "created": "2014-12-11 11:27:45",
                 "modified": "2014-12-11 11:27:56",
 		"type": "regular",
-		"delivery_requested": null,
+		"delivery_queried": null,
                 "delivery_started": null,
                 "delivery_ended": null,
                 "name": "Mijn tweede campagne",
@@ -2504,21 +2504,21 @@ $result = $campaign->all();
 
 <tr>
 <td class="left continue">
-<h3>Campagne content opvragen</h3>
-<p>De inhoud van een campagne opvragen.</p>
-<p><i>Let op: dit kan alleen als het een campagne betreft die ge&iuml;mporteerd is, en niet bij een campagne die binnen de applicatie is gemaakt met de drag &amp; drop-editor.</i></p>
+<h3>Querying campaign content</h3>
+<p>Querying the content of a campaign.</p>
+<p><i>Please note that this is only possible if it involves a campaign that has been exported, and not for a campaign created within the application using the drag &amp; drop editor.</i></p>
 <h4>Parameters</h4>
 <table class="vars">
-<tr><td class="var">campaign_id <span class="required">(manditory)</span>:</td><td class="explanation">Het id van de campagne</td></tr>
+<tr><td class="var">campaign_id <span class="required">(mandatory)</span>:</td><td class="explanation">The ID of the campaign</td></tr>
 </table>
 </td><!-- /left -->
 
 <td class="right continue">
-<h4>Definitie</h4>
+<h4>Definition</h4>
 <pre class="code">
 GET https://api.laposta.nl/v2/campaign/{campaign_id}/content
 </pre>
-<h4>Voorbeeld aanvraag</h4>
+<h4>Example of query</h4>
 <pre class="code">
 <? if (empty($lib) || $lib == 'curl') { ?>
 $ curl https://api.laposta.nl/v2/campaign/njhgaf61ye/content \
@@ -2529,16 +2529,16 @@ Laposta::setApiKey('JdMtbsMq2jqJdQZD9AHC');
 $campaign = new Laposta_Campaign();
 $result = $campaign->get('pbrqulw2tc', 'content');
 <? } else if ($lib == 'dotnet') { ?>
-[voor deze functionaliteit is nog geen .NET wrapper beschikbaar]
+[No .NET wrapper is available yet for this feature]
 <? } ?>
 </div>
-<h4>Voorbeeld antwoord</h4>
+<h4>Example of response</h4>
 <pre class="code">
 {
     "campaign": {
         "account_id": "wFiUS4HL4e",
         "campaign_id": "pbrqulw2tc",
-        "plaintext": "Bekijk hier de webversie:\n/tag/web\n\n           \n\n \t\tZet hier een korte, pakkende omschrijving van uw nieuwsbrief.\n\n \t\tBekijk de webversie [1]\n\n \t\tDe titel van dit blok\n\n Dit is het blok Tekst. Als u deze tekst aanklikt, kunt u deze\nwijzigen. Aan de linkerkant krijgt u twee tabs te zien. Onder de tab\nInhoud kunt u uw tekst invoeren en iets opmaken. Hier kunt u ook de\ntitel van dit blok aanpassen. Onder de tab Vormgeving doet u de grote\nopmaak, van de titel, de tekst en het vak.\n\nWilt u weer naar het overzicht van blokken en de opties voor algehele\nopmaak? Sla dan uw blok op of klik op de buitenkant van uw\nnieuwsbrief. \n\n Deze e-mail is verstuurd aan {{email}} [2].\nAls u geen nieuwsbrief meer wilt ontvangen, kunt u zich hier afmelden\n[3].\nU kunt ook uw gegevens inzien en wijzigen [4].\nVoor een goede ontvangst voegt u {{from_email}} [5] toe aan uw\nadresboek. \n\nDeze email is verstuurd aan {{email}}.\nAls u geen nieuwsbrief meer wilt ontvangen, kunt u zich hier afmelden\n[6].\n\n \n\nLinks:\n------\n[1] http://clients.laposta.nl/tag/web\n[2] mailto:{{email}}\n[3] http://clients.laposta.nl/tag/unsubscribe\n[4] http://clients.laposta.nl/tag/edit\n[5] mailto:{{from_email}}\n[6] /tag/unsubscribe\n",
+        "plaintext": "View the web version here:\n/tag/web\n\n           \n\n \t\tInsert a short and captivating description of your newsletter here.\n\n \t\tView the web version [1]\n\n \t\tTitle of this segment\n\n This is a text segment. If you click this text, you can edit\nthis. On the left side you are presented with two tabs. Under the Content\ntab, you can enter your text and do some formatting. Here you can also edit the\ntitle of this segment. Under the Formatting tab, you will be able to deal with the main\nformatting, of the title, the text and the box.\n\nWould you like to return to the overview of segments and the options for overall\nlayout? Save your segment of click the outside of your\nnewsletter. \n\n This email has been sent to {{email}} [2].\nIf you no longer wish to receive our newsletter, you may unsubscribe here\n[3].\nYou may also review and edit your data [4].\nFor proper delivery, please add {{from_email}} [5] to your\ncontact book. \n\nThis email has been sent to {{email}}.\nIf you no longer wish to receive our newsletter, you may unsubscribe here\n\n[6].\n\n \n\nLinks:\n------\n[1] http://clients.laposta.nl/tag/web\n[2] mailto:{{email}}\n[3] http://clients.laposta.nl/tag/unsubscribe\n[4] http://clients.laposta.nl/tag/edit\n[5] mailto:{{from_email}}\n[6] /tag/unsubscribe\n",
         "html": "<?= htmlspecialchars('<!DOCTYPE html PUBLIC \"-//W3C//DTD XHTML 1.0 Transitional //EN\" \"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd\">\n<html xmlns=\"http://www.w3.org/1999/xhtml\" xmlns:v=\"urn:schemas-microsoft-com:vml\" xmlns:o=\"urn:schemas-microsoft-com:office:office\">\n<head>\n<style type=\"text/css\">\n\n</style>\n<meta http-equiv=\"Content-Type\" content=\"text/html; charset=utf-8\" /> ... <table cellspacing=\"0\" cellpadding=\"0\"><tr><td><![endif]-->\n</td></tr></table>\n<table width=\"100%\" cellspacing=\"0\" cellpadding=\"30\" border=\"0\" bgcolor=\"#ffffff\"><tr><td>&nbsp;</td></tr><tr><td align=\"center\" style=\"color:#333333 !important;line-height:17px !important;font-size:13px !important;font-family:arial !important;font-weight:normal !important\">Deze email is verstuurd aan {{email}}.<br>Als u geen nieuwsbrief meer wilt ontvangen, kunt u zich <a style=\"color:#333;text-decoration:underline;font-size:13px;font-family:arial;font-weight:normal\" href=\"/tag/unsubscribe\">hier afmelden</a>.</td></tr></table></body>\n</html>') ?>",
 	"import_url": "https://example.net/newsletter"
     }
@@ -2549,37 +2549,37 @@ $result = $campaign->get('pbrqulw2tc', 'content');
 
 <tr>
 <td class="left continue">
-<h3>Campagne content vullen</h3>
-<p>De inhoud van een campagne vullen.</p>
+<h3>Filling campaign content</h3>
+<p>Filling in the content of a campaign</p>
 <h4>Parameters</h4>
-<p>De campagne kan ofwel direct gevuld worden met html, ofwel via een url, waarbij Laposta de html importeert die op de opgegeven url te vinden is. Een van beide moet gekozen worden. Als beide parameters worden meegegeven dan wordt de html genomen.</p>
+<p>The campaign can either be filled directly with html, or through a URL, in which case Laposta imports the html found at the specified URL. One of the two must be chosen. If both parameters are given the html is taken.</p>
 <table class="vars">
-<tr><td class="var">campaign_id <span class="required">(manditory)</span>:</td><td class="explanation">Het id van de campagne</td></tr>
-<tr><td class="var">html:</td><td class="explanation">De html voor de campagne</td></tr>
-<tr><td class="var">import_url:</td><td class="explanation">De url vanwaar de html ge&iuml;mporteerd moet worden</td></tr>
-<tr><td class="var">inline_css:</td><td class="explanation">Eventueel inlinen van css (<code>true</code> of <code>false</code>)</td></tr>
+<tr><td class="var">campaign_id <span class="required">(mandatory)</span>:</td><td class="explanation">The ID of the campaign</td></tr>
+<tr><td class="var">html:</td><td class="explanation">The html for the campaign</td></tr>
+<tr><td class="var">import_url:</td><td class="explanation">The URL from which the html must be imported</td></tr>
+<tr><td class="var">inline_css:</td><td class="explanation">Potential inlining of css (<code>true</code> or <code>false</code>)</td></tr>
 </table>
-<h4>Rapportage resultaat</h4>
-<p>Als het importeren niet lukt volgt er een 400-foutmelding van de api. Als het wel lukt om de html te importeren, maar er zijn tijdens de import problemen gevonden, dan worden die in de variabele <code>report</code> in het antwoord getoond. Het kan hier gaan om:</p>
+<h4>Report result</h4>
+<p>If the import fails, a 400 error message from the API will occur. If it does succeed in importing the html, but problems were found during the import, they are shown in the variable <code>report</code> in the response. These may include:</p>
 <table class="vars">
-<tr><td class="var">javascript:</td><td class="explanation">Er is javascript aangetroffen</td></tr>
-<tr><td class="var">flash:</td><td class="explanation">Er is flash aangetroffen</td></tr>
-<tr><td class="var">no_unsubscribe:</td><td class="explanation">Er is geen afmeldlink gevonden</td></tr>
-<tr><td class="var">empty_unsubscribe:</td><td class="explanation">Er is een lege afmeldlink gevonden</td></tr>
-<tr><td class="var">css:</td><td class="explanation">Er zijn ontbrekende externe css bestanden (worden opgesomd)</td></tr>
-<tr><td class="var">images:</td><td class="explanation">Er zijn ontbrekende externe afbeeldingen (worden opgesomd)</td></tr>
+<tr><td class="var">javascript:</td><td class="explanation">JavaScript was encountered</td></tr>
+<tr><td class="var">flash:</td><td class="explanation">Flash was encountered</td></tr>
+<tr><td class="var">no_unsubscribe:</td><td class="explanation">No unsubscribe could be located</td></tr>
+<tr><td class="var">empty_unsubscribe:</td><td class="explanation">Empty unsubscribe encountered</td></tr>
+<tr><td class="var">css:</td><td class="explanation">Missing external css files (listed)</td></tr>
+<tr><td class="var">images:</td><td class="explanation">Missing external images (listed)</td></tr>
 </table>
-<p>Het is voor het versturen niet noodzakelijk deze problemen op te lossen, maar wel geadviseerd.</p>
-<h4>Reclame en afmeldink</h4>
-<p>Bij een gratis account wordt aan de onderkant van de nieuwsbrief onze reclame toegevoegd. Als de aangeboden html geen afmeldlink bevat, dan wordt ook deze door ons programma toegevoegd.</p>
+<p>Solving these problems is not necessary in order to properly send the newsletter, but it is highly recommended.</p>
+<h4>Advertising and unsubscribe link</h4>
+<p>In the case of a free account, our advertising is added to the bottom of the newsletter. If the offered html does not contain an unsubscribe link, it will simply be added by our program.</p>
 </td><!-- /left -->
 
 <td class="right continue">
-<h4>Definitie</h4>
+<h4>Definition</h4>
 <pre class="code">
 POST https://api.laposta.nl/v2/campaign/{campaign_id}/content
 </pre>
-<h4>Voorbeeld aanvraag</h4>
+<h4>Example of query</h4>
 <pre class="code">
 <? if (empty($lib) || $lib == 'curl') { ?>
 curl https://api.laposta.nl/v2/campaign/pbrqulw2tc/content \
@@ -2593,17 +2593,17 @@ $result = $campaign->update('pbrqulw2tc', array(
 	'import_url' => 'http://google.com'
 ), 'content');
 <? } else if ($lib == 'dotnet') { ?>
-[voor deze functionaliteit is nog geen .NET wrapper beschikbaar]
+[No .NET wrapper is available yet for this feature]
 <? } ?>
 </div>
-<h4>Voorbeeld antwoord</h4>
+<h4>Example of response</h4>
 <pre class="code">
 {
-    "campaign": {
-        "account_id": "wFiUS4HL4e",
-        "campaign_id": "pbrqulw2tc",
-        "plaintext": "Bekijk hier de webversie:\n/tag/web\n\n           \n\n \t\tZet hier een korte, pakkende omschrijving van uw nieuwsbrief.\n\n \t\tBekijk de webversie [1]\n\n \t\tDe titel van dit blok\n\n Dit is het blok Tekst. Als u deze tekst aanklikt, kunt u deze\nwijzigen. Aan de linkerkant krijgt u twee tabs te zien. Onder de tab\nInhoud kunt u uw tekst invoeren en iets opmaken. Hier kunt u ook de\ntitel van dit blok aanpassen. Onder de tab Vormgeving doet u de grote\nopmaak, van de titel, de tekst en het vak.\n\nWilt u weer naar het overzicht van blokken en de opties voor algehele\nopmaak? Sla dan uw blok op of klik op de buitenkant van uw\nnieuwsbrief. \n\n Deze e-mail is verstuurd aan {{email}} [2].\nAls u geen nieuwsbrief meer wilt ontvangen, kunt u zich hier afmelden\n[3].\nU kunt ook uw gegevens inzien en wijzigen [4].\nVoor een goede ontvangst voegt u {{from_email}} [5] toe aan uw\nadresboek. \n\nDeze email is verstuurd aan {{email}}.\nAls u geen nieuwsbrief meer wilt ontvangen, kunt u zich hier afmelden\n[6].\n\n \n\nLinks:\n------\n[1] http://clients.laposta.nl/tag/web\n[2] mailto:{{email}}\n[3] http://clients.laposta.nl/tag/unsubscribe\n[4] http://clients.laposta.nl/tag/edit\n[5] mailto:{{from_email}}\n[6] /tag/unsubscribe\n",
-        "html": "<?= htmlspecialchars('<!DOCTYPE html PUBLIC \"-//W3C//DTD XHTML 1.0 Transitional //EN\" \"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd\">\n<html xmlns=\"http://www.w3.org/1999/xhtml\" xmlns:v=\"urn:schemas-microsoft-com:vml\" xmlns:o=\"urn:schemas-microsoft-com:office:office\">\n<head>\n<style type=\"text/css\">\n\n</style>\n<meta http-equiv=\"Content-Type\" content=\"text/html; charset=utf-8\" /> ... <table cellspacing=\"0\" cellpadding=\"0\"><tr><td><![endif]-->\n</td></tr></table>\n<table width=\"100%\" cellspacing=\"0\" cellpadding=\"30\" border=\"0\" bgcolor=\"#ffffff\"><tr><td>&nbsp;</td></tr><tr><td align=\"center\" style=\"color:#333333 !important;line-height:17px !important;font-size:13px !important;font-family:arial !important;font-weight:normal !important\">Deze email is verstuurd aan {{email}}.<br>Als u geen nieuwsbrief meer wilt ontvangen, kunt u zich <a style=\"color:#333;text-decoration:underline;font-size:13px;font-family:arial;font-weight:normal\" href=\"/tag/unsubscribe\">hier afmelden</a>.</td></tr></table></body>\n</html>') ?>",
+	   "campaign": {
+	       "account_id": "wFiUS4HL4e",
+	       "campaign_id": "pbrqulw2tc",
+	       "plaintext": "View the web version here:\n/tag/web\n\n           \n\n \t\tInsert a short and captivating description of your newsletter here.\n\n \t\tView the web version [1]\n\n \t\tTitle of this segment\n\n This is a text segment. If you click this text, you can edit\nthis. On the left side you are presented with two tabs. Under the Content\ntab, you can enter your text and do some formatting. Here you can also edit the\ntitle of this segment. Under the Formatting tab, you will be able to deal with the main\nformatting, of the title, the text and the box.\n\nWould you like to return to the overview of segments and the options for overall\nlayout? Save your segment of click the outside of your\nnewsletter. \n\n This email has been sent to {{email}} [2].\nIf you no longer wish to receive our newsletter, you may unsubscribe here\n[3].\nYou may also review and edit your data [4].\nFor proper delivery, please add {{from_email}} [5] to your\ncontact book. \n\nThis email has been sent to {{email}}.\nIf you no longer wish to receive our newsletter, you may unsubscribe here\n\n[6].\n\n \n\nLinks:\n------\n[1] http://clients.laposta.nl/tag/web\n[2] mailto:{{email}}\n[3] http://clients.laposta.nl/tag/unsubscribe\n[4] http://clients.laposta.nl/tag/edit\n[5] mailto:{{from_email}}\n[6] /tag/unsubscribe\n",
+	       "html": "<?= htmlspecialchars('<!DOCTYPE html PUBLIC \"-//W3C//DTD XHTML 1.0 Transitional //EN\" \"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd\">\n<html xmlns=\"http://www.w3.org/1999/xhtml\" xmlns:v=\"urn:schemas-microsoft-com:vml\" xmlns:o=\"urn:schemas-microsoft-com:office:office\">\n<head>\n<style type=\"text/css\">\n\n</style>\n<meta http-equiv=\"Content-Type\" content=\"text/html; charset=utf-8\" /> ... <table cellspacing=\"0\" cellpadding=\"0\"><tr><td><![endif]-->\n</td></tr></table>\n<table width=\"100%\" cellspacing=\"0\" cellpadding=\"30\" border=\"0\" bgcolor=\"#ffffff\"><tr><td>&nbsp;</td></tr><tr><td align=\"center\" style=\"color:#333333 !important;line-height:17px !important;font-size:13px !important;font-family:arial !important;font-weight:normal !important\">Deze email is verstuurd aan {{email}}.<br>Als u geen nieuwsbrief meer wilt ontvangen, kunt u zich <a style=\"color:#333;text-decoration:underline;font-size:13px;font-family:arial;font-weight:normal\" href=\"/tag/unsubscribe\">hier afmelden</a>.</td></tr></table></body>\n</html>') ?>",
 	"import_url": "https://example.net/newsletter",
 	"report": {
             "javascript": true,
@@ -2617,21 +2617,21 @@ $result = $campaign->update('pbrqulw2tc', array(
 
 <tr>
 <td class="left continue">
-<h3>Campagne verzenden</h3>
-<p>Een campagne direct versturen.</p>
+<h3>Sending a campaign</h3>
+<p>Directly sending  a campaign</p>
 <h4>Parameters</h4>
 <table class="vars">
-<tr><td class="var">campaign_id <span class="required">(manditory)</span>:</td><td class="explanation">Het id van de campagne</td></tr>
+<tr><td class="var">campaign_id <span class="required">(mandatory)</span>:</td><td class="explanation">The ID of the campaign</td></tr>
 </table>
-<p>Ter info: een campagne die al eerder verzonden werd, kan ook opnieuw verzonden worden. De campagne wordt dan alleen gestuurd naar de adressen die er sinds de laatste verzending zijn bijgekomen.</p>
+<p>Note: A campaign that has been sent before can also be re-sent. The campaign will then only be sent to the addresses that have been added since the last send.</p>
 </td><!-- /left -->
 
 <td class="right continue">
-<h4>Definitie</h4>
+<h4>Definition</h4>
 <pre class="code">
 POST https://api.laposta.nl/v2/campaign/{campaign_id}/action/send
 </pre>
-<h4>Voorbeeld aanvraag</h4>
+<h4>Example of query</h4>
 <pre class="code">
 <? if (empty($lib) || $lib == 'curl') { ?>
 curl https://api.laposta.nl/v2/campaign/pbrqulw2tc/action/send \
@@ -2643,10 +2643,10 @@ Laposta::setApiKey('JdMtbsMq2jqJdQZD9AHC');
 $campaign = new Laposta_Campaign();
 $result = $campaign->update('pbrqulw2tc', array(), 'action', 'send');
 <? } else if ($lib == 'dotnet') { ?>
-[voor deze functionaliteit is nog geen .NET wrapper beschikbaar]
+[No .NET wrapper is available yet for this feature]
 <? } ?>
 </div>
-<h4>Voorbeeld antwoord</h4>
+<h4>Example of response</h4>
 <pre class="code">
 {
     "campaign": {
@@ -2655,11 +2655,11 @@ $result = $campaign->update('pbrqulw2tc', array(), 'action', 'send');
         "created": "2014-12-11 11:26:19",
         "modified": "2014-12-11 11:27:31",
         "type": "regular",
-        "delivery_requested": "2014-12-11 11:27:29",
+        "delivery_queried": "2014-12-11 11:27:29",
         "delivery_started": null,
         "delivery_ended": null,
-        "name": "Mijn eerste campagne",
-        "subject": "Mijn eerste campagne",
+        "name": "My first campaign",
+        "subject": "My first campaign",
         "from": {
             "name": "Laposta API",
             "email": "api@laposta.nl"
@@ -2685,39 +2685,39 @@ $result = $campaign->update('pbrqulw2tc', array(), 'action', 'send');
 
 <tr>
 <td class="left continue">
-<h3>Campagne inplannen</h3>
-<p>Een campagne inplannen voor een later moment.</p>
+<h3>Planning a campaign</h3>
+<p>Planning a campaign for a later date.</p>
 <h4>Parameters</h4>
 <table class="vars">
-<tr><td class="var">campaign_id <span class="required">(manditory)</span>:</td><td class="explanation">Het id van de campagne</td></tr>
-<tr><td class="var">delivery_requested <span class="required">(manditory)</span>:</td><td class="explanation">Het moment van verzenden (formaat YYYY-MM-DD HH:MM:SS)</td></tr>
+<tr><td class="var">campaign_id <span class="required">(mandatory)</span>:</td><td class="explanation">The ID of the campaign</td></tr>
+<tr><td class="var">delivery_queried <span class="required">(mandatory)</span>:</td><td class="explanation">The time and date of sending (format YYYY-MM-DD HH:MM:SS)</td></tr>
 </table>
-<p>Ter info: een campagne die al eerder verzonden werd, kan ook opnieuw ingepland worden. De campagne wordt dan alleen verzonden naar de adressen die er sinds de laatste verzending zijn bijgekomen.</p>
+<p>Note: A campaign that has been sent before can also be re-planned. The campaign will then only be sent to the addresses that have been added since the last send.</p>
 </td><!-- /left -->
 
 <td class="right continue">
-<h4>Definitie</h4>
+<h4>Definition</h4>
 <pre class="code">
 POST https://api.laposta.nl/v2/campaign/{campaign_id}/action/schedule
 </pre>
-<h4>Voorbeeld aanvraag</h4>
+<h4>Example of query</h4>
 <pre class="code">
 <? if (empty($lib) || $lib == 'curl') { ?>
 curl https://api.laposta.nl/v2/campaign/pbrqulw2tc/action/schedule \
   -u JdMtbsMq2jqJdQZD9AHC: \
-  '-d delivery_requested=2016-05-19 12:00:00'
+  '-d delivery_queried=2016-05-19 12:00:00'
 <? } else if ($lib == 'php') { ?>
 require_once('./lib/Laposta.php');
 Laposta::setApiKey('JdMtbsMq2jqJdQZD9AHC');
 $campaign = new Laposta_Campaign();
 $result = $campaign->update('pbrqulw2tc', array(
-	'delivery_requested' => '2016-05-20 12:00'
+	'delivery_queried' => '2016-05-20 12:00'
 ), 'action', 'schedule');
 <? } else if ($lib == 'dotnet') { ?>
-[voor deze functionaliteit is nog geen .NET wrapper beschikbaar]
+[No .NET wrapper is available yet for this feature]
 <? } ?>
 </div>
-<h4>Voorbeeld antwoord</h4>
+<h4>Example of response</h4>
 <pre class="code">
 {
     "campaign": {
@@ -2726,11 +2726,11 @@ $result = $campaign->update('pbrqulw2tc', array(
         "created": "2014-12-11 11:26:19",
         "modified": "2014-12-11 11:27:31",
         "type": "regular",
-        "delivery_requested": "2016-05-19 12:00:00",
+        "delivery_queried": "2016-05-19 12:00:00",
         "delivery_started": null,
         "delivery_ended": null,
-        "name": "Mijn eerste campagne",
-        "subject": "Mijn eerste campagne",
+        "name": "My first campaign",
+        "subject": "My first campaign",
         "from": {
             "name": "Laposta API",
             "email": "api@laposta.nl"
@@ -2756,22 +2756,22 @@ $result = $campaign->update('pbrqulw2tc', array(
 
 <tr>
 <td class="left continue">
-<h3>Campagne testen</h3>
-<p>Een testmail versturen.</p>
+<h3>Testing a campaign</h3>
+<p>Sending a test mail</p>
 <h4>Parameters</h4>
 <table class="vars">
-<tr><td class="var">campaign_id <span class="required">(manditory)</span>:</td><td class="explanation">Het id van de campagne</td></tr>
-<tr><td class="var">email <span class="required">(manditory)</span>:</td><td class="explanation">Het e-mailadres waarnaar de test verzonden moet worden.</td></tr>
+<tr><td class="var">campaign_id <span class="required">(mandatory)</span>:</td><td class="explanation">The ID of the campaign</td></tr>
+<tr><td class="var">email <span class="required">(mandatory)</span>:</td><td class="explanation">The email address to which the test should be sent.</td></tr>
 </table>
-<p>Ter info: alleen bij een campagne waarvoor al wel inhoud is, maar die nog niet verzonden is, kan een testmail verstuurd worden.</p>
+<p>Note: only in the case of a campaign for which there already is content, but which has not yet been sent, is it possible for a test email to be sent.</p>
 </td><!-- /left -->
 
 <td class="right continue">
-<h4>Definitie</h4>
+<h4>Definition</h4>
 <pre class="code">
 POST https://api.laposta.nl/v2/campaign/{campaign_id}/action/testmail
 </pre>
-<h4>Voorbeeld aanvraag</h4>
+<h4>Example of query</h4>
 <pre class="code">
 <? if (empty($lib) || $lib == 'curl') { ?>
 curl https://api.laposta.nl/v2/campaign/pbrqulw2tc/action/testmail \
@@ -2785,10 +2785,10 @@ $result = $campaign->update('pbrqulw2tc', array(
 	'email' => 'test@example.net'
 ), 'action', 'testmail');
 <? } else if ($lib == 'dotnet') { ?>
-[voor deze functionaliteit is nog geen .NET wrapper beschikbaar]
+[No .NET wrapper is available yet for this feature]
 <? } ?>
 </div>
-<h4>Voorbeeld antwoord</h4>
+<h4>Example of response</h4>
 <pre class="code">
 {
     "campaign": {
@@ -2797,11 +2797,11 @@ $result = $campaign->update('pbrqulw2tc', array(
         "created": "2014-12-11 11:26:19",
         "modified": "2014-12-11 11:27:31",
         "type": "regular",
-        "delivery_requested": null,
+        "delivery_queried": null,
         "delivery_started": null,
         "delivery_ended": null,
-        "name": "Mijn eerste campagne",
-        "subject": "Mijn eerste campagne",
+        "name": "My first campaign",
+        "subject": "My first campaign",
         "from": {
             "name": "Laposta API",
             "email": "api@laposta.nl"
@@ -2831,12 +2831,12 @@ $result = $campaign->update('pbrqulw2tc', array(
 <tr>
 <td class="left">
 <a id="reports"></a>
-<h2>Resultaten</h2>
-<p>De cijfers van de resultaten van campagnes opvragen.</p>
+<h2>Results</h2>
+<p>Retrieve the figures of the results of campaigns.</p>
 </td><!-- /left -->
 
 <td class="right">
-<h2>URL patronen</h2>
+<h2>URL patterns</h2>
 <ul class="code">
 <li>/v2/report</li>
 <li>/v2/report/{campaign_id}</li>
@@ -2846,33 +2846,33 @@ $result = $campaign->update('pbrqulw2tc', array(
 
 <tr>
 <td class="left continue">
-<h3>Het  object</h3>
-<h4>Velden</h4>
+<h3>The object</h3>
+<h4>Fields</h4>
 <table class="vars">
-<tr><td class="var">account_id:</td><td class="explanation">Het id van dit account</td></tr>
-<tr><td class="var">campaign_id:</td><td class="explanation">Het id van de campagne</td></tr>
-<tr><td class="var">sent:</td><td class="explanation">Het aantal verzonden e-mails</td></tr>
-<tr><td class="var">accepted:</td><td class="explanation">Het aantal door de ontvangende mailservers geaccepteerde aantal e-mails</td></tr>
+<tr><td class="var">account_id:</td><td class="explanation">The ID of this account</td></tr>
+<tr><td class="var">campaign_id:</td><td class="explanation">The ID of the campaign</td></tr>
+<tr><td class="var">sent:</td><td class="explanation">The number of emails sent</td></tr>
+<tr><td class="var">accepted:</td><td class="explanation">The number of emails accepted by the recipient mail servers</td></tr>
 <!--
-<tr><td class="var">opened:</td><td class="explanation">Het aantal geregistreerde opens</td></tr>
-<tr><td class="var">clicked:</td><td class="explanation">Het aantal geregistreerde kliks</td></tr>
-<tr><td class="var">webversion:</td><td class="explanation">Het aantal keer dat de webversie bekeken is</td></tr>
+<tr><td class="var">opened:</td><td class="explanation">The number of registered opens</td></tr>
+<tr><td class="var">clicked:</td><td class="explanation">The number of registered clicks</td></tr>
+<tr><td class="var">webversion:</td><td class="explanation">The number of times the web version was viewed</td></tr>
 -->
-<tr><td class="var">cleaned:</td><td class="explanation">Het aantal opgeschoonde relaties</td></tr>
-<tr><td class="var">complained:</td><td class="explanation">Het aantal spamklachten (door klikken op spamknop in e-mailprogramma)</td></tr>
-<tr><td class="var">hardbounced:</td><td class="explanation">Het aantal hard-bounces</td></tr>
-<tr><td class="var">unsubscribed:</td><td class="explanation">Het aantal afmeldingen</td></tr>
-<tr><td class="var">opened_unique:</td><td class="explanation">Het aantal relaties dat de e-mail &eacute;&eacute;n keer of meer geopend heeft</td></tr>
-<tr><td class="var">clicked_unique:</td><td class="explanation">Het aantal relaties dat &eacute;&eacute;n keer of meer geklikt heeft</td></tr>
-<tr><td class="var">webversion_unique:</td><td class="explanation">Het aantal relaties dat de webversie heeft opgevraagd</td></tr>
-<tr><td class="var">accepted_ratio:</td><td class="explanation">De verhouding geaccepteerde e-mails t.o.v. het aantal verzonden e-mails</td></tr>
-<tr><td class="var">opened_ratio:</td><td class="explanation">De verhouding &eacute;&eacute;n keer of meer geopende e-mail t.o.v. het aantal geaccepteerde e-mails</td></tr>
-<tr><td class="var">clicked_ratio:</td><td class="explanation">De verhouding e-mails waarin &eacute;&eacute;n keer of meer geklikt is t.o.v. het aantal geaccepteerde e-mails</td></tr>
+<tr><td class="var">cleaned:</td><td class="explanation">The number of deleted relations</td></tr>
+<tr><td class="var">complained:</td><td class="explanation">The number of spam complaints (by clicking on the spam button in the email program)</td></tr>
+<tr><td class="var">hardbounced:</td><td class="explanation">The number of hard-bounces</td></tr>
+<tr><td class="var">unsubscribed:</td><td class="explanation">The number of unsubscriptions</td></tr>
+<tr><td class="var">opened_unique:</td><td class="explanation">The number of relations who have opened the email once or more</td></tr>
+<tr><td class="var">clicked_unique:</td><td class="explanation">The number of relations who have clicked on the email once or more</td></tr>
+<tr><td class="var">webversion_unique:</td><td class="explanation">The number of relations who have queried the web version</td></tr>
+<tr><td class="var">accepted_ratio:</td><td class="explanation">The ratio of accepted emails to the number of sent emails</td></tr>
+<tr><td class="var">opened_ratio:</td><td class="explanation">The ratio of emails opened once or more to the number of accepted emails</td></tr>
+<tr><td class="var">clicked_ratio:</td><td class="explanation">The ratio of emails that have been clicked once or more to the number of accepted emails</td></tr>
 </table>
 </td><!-- /left -->
 
 <td class="right continue">
-<h4>Voorbeeld report object</h4>
+<h4>Example of report object</h4>
 <pre class="code">
 {
     "report": {
@@ -2901,20 +2901,20 @@ $result = $campaign->update('pbrqulw2tc', array(
 
 <tr>
 <td class="left continue">
-<h3>Resultaten van campagne opvragen</h3>
-<p>De resultaten van een campagne.</p>
+<h3>Results of a campaign query</h3>
+<p>The results of a campaign.</p>
 <h4>Parameters</h4>
 <table class="vars">
-<tr><td class="var">campaign_id <span class="required">(manditory)</span>:</td><td class="explanation">Het id van de campagne</td></tr>
+<tr><td class="var">campaign_id <span class="required">(mandatory)</span>:</td><td class="explanation">The ID of a campaign</td></tr>
 </table>
 </td><!-- /left -->
 
 <td class="right continue">
-<h4>Definitie</h4>
+<h4>Definition</h4>
 <pre class="code">
 GET https://api.laposta.nl/v2/report/{campaign_id}
 </pre>
-<h4>Voorbeeld aanvraag</h4>
+<h4>Example of query</h4>
 <pre class="code">
 <? if (empty($lib) || $lib == 'curl') { ?>
 $ curl https://api.laposta.nl/v2/report/njhgaf61ye \
@@ -2925,10 +2925,10 @@ Laposta::setApiKey('JdMtbsMq2jqJdQZD9AHC');
 $report = new Laposta_Report();
 $result = $report->get('njhgaf61ye');
 <? } else if ($lib == 'dotnet') { ?>
-[voor deze functionaliteit is nog geen .NET wrapper beschikbaar]
+[No .NET wrapper is available yet for this feature]
 <? } ?>
 </div>
-<h4>Voorbeeld antwoord</h4>
+<h4>Example of response</h4>
 <pre class="code">
 {
     "report": {
@@ -2957,21 +2957,21 @@ $result = $report->get('njhgaf61ye');
 
 <tr>
 <td class="left continue">
-<h3>De resultaten van alle campagnes van een account opvragen</h3>
-<p>De resultaten van alle campagnes in een array van result objecten. De report objecten zijn opgenomen in een array met de naam 'data'.</p>
+<h3>Viewing the results of all campaigns of an account</h3>
+<p>The results of all campaigns in an array of list objects. The report objects have been ordered in an array with the name 'data'.</p>
 <h4>Parameters</h4>
 <table class="vars">
-<tr><td>Geen.</td></tr>
+<tr><td>None.</td></tr>
 </table>
 </td><!-- /left -->
 
 <td class="right continue">
-<h4>Definitie</h4>
+<h4>Definition</h4>
 <pre class="code">
 GET https://api.laposta.nl/v2/report
 </pre>
 
-<h4>Voorbeeld aanvraag</h4>
+<h4>Example of query</h4>
 <pre class="code">
 <? if (empty($lib) || $lib == 'curl') { ?>
 $ curl https://api.laposta.nl/v2/report \
@@ -2982,10 +2982,10 @@ Laposta::setApiKey('JdMtbsMq2jqJdQZD9AHC');
 $report = new Laposta_Report();
 $result = $report->all();
 <? } else if ($lib == 'dotnet') { ?>
-[voor deze functionaliteit is nog geen .NET wrapper beschikbaar]
+[No .NET wrapper is available yet for this feature]
 <? } ?>
 </pre>
-<h4>Voorbeeld antwoord</h4>
+<h4>Example of response</h4>
 <pre class="code">
 {
     "data": [
@@ -3044,13 +3044,13 @@ $result = $report->all();
 <td class="left">
 <a id="accounts"></a>
 <h2>Accounts</h2>
-<p>Via onze API is het voor partners ook mogelijk nieuwe accounts aan te maken. Deze mogelijkheid is standaard niet geactiveerd; neemt u contact met ons op om deze mogelijkheid voor u beschikbaar te maken.</p>
-<p>Op dit moment is het alleen mogelijk accounts aan te maken, en aangemaakte accounts op te vragen. Het is nog niet mogelijk accounts te wijzigen of te verwijderen.</p>
-<p><i>Dit deel van de API is alleen via https te gebruiken.</i></p>
+<p>Through our API, it is also possible for partners to create new accounts. This option is not activated by default; please contact us to make this option available to you.</p>
+<p>Currently it is only possible to create accounts, and to view created accounts. It is not yet possible to edit or delete accounts.</p>
+<p><i>This part of the API can only be used using https.</i></p>
 </td><!-- /left -->
 
 <td class="right">
-<h2>URL patronen</h2>
+<h2>URL patterns</h2>
 <ul class="code">
 <li>/v2/account</li>
 <li>/v2/account/{account_id}</li>
@@ -3060,21 +3060,21 @@ $result = $report->all();
 
 <tr>
 <td class="left continue">
-<h3>Het  object</h3>
-<h4>Velden</h4>
+<h3>The object</h3>
+<h4>Fields</h4>
 <table class="vars">
-<tr><td class="var">account_id:</td><td class="explanation">Het id van dit account</td></tr>
-<tr><td class="var">created:</td><td class="explanation">Moment van aanmaken</td></tr>
-<tr><td class="var">modified:</td><td class="explanation">Moment van laatste wijziging</td></tr>
-<tr><td class="var">hostname:</td><td class="explanation">De hostname voor gebruik in het domein email-provider.nl</td></tr>
-<tr><td class="var">api_key:</td><td class="explanation">De API-key voor dit account</td></tr>
-<tr><td class="var">company:</td><td class="explanation">De bij dit account horende organisatie</td></tr>
-<tr><td class="var">users:</td><td class="explanation">De bij dit account horende gebruikers</td></tr>
+<tr><td class="var">account_id:</td><td class="explanation">The ID of the account</td></tr>
+<tr><td class="var">created:</td><td class="explanation">Date and time of creation</td></tr>
+<tr><td class="var">modified:</td><td class="explanation">Date and time of last change made</td></tr>
+<tr><td class="var">hostname:</td><td class="explanation">The hostname for use in the domain email-provider.nl</td></tr>
+<tr><td class="var">api_key:</td><td class="explanation">The API-key for this account</td></tr>
+<tr><td class="var">company:</td><td class="explanation">The organization associated with this account</td></tr>
+<tr><td class="var">users:</td><td class="explanation">The users associated with this account</td></tr>
 </table>
 </td><!-- /left -->
 
 <td class="right continue">
-<h4>Voorbeeld account object</h4>
+<h4>Example of account object</h4>
 <pre class="code">
 {
     "account": {
@@ -3111,28 +3111,28 @@ $result = $report->all();
 
 <tr>
 <td class="left continue">
-<h3>Account aanmaken</h3>
-<p>Bij het aanmaken van een account hoeft u alleen de naam van de organisatie en enkele gegevens over de bij het account horende gebruiker aan te geven. In het antwoord van de API worden vervolgens login &eacute;n wachtwoord vermeld. De vermelding van het wachtwoord is eenmalig omdat de wachtwoorden door ons niet worden opgeslagen. De gebruiker kan later eventueel zelf het wachtwoord wijzigen.</p>
-<p>Als er iets niet klopt aan de meegegeven parameters dan wordt bij de foutmelding een code en een melding weergegeven. Zie hierboven bij Foutmeldingen wat de codes betekenen.</p>
+<h3>Creating an account</h3>
+<p>When creating an account, you will only need to provide the name of the organization and provide some information regarding the user associated with the account. The API response will then specify a login <i>and</i> password. The password is a one-time entry because we do not store the passwords. The user may later change the password themselves.</p>
+<p>If there is something wrong with the parameters provided, a code is displayed with an error message. See above under 'Error messages' what the codes stand for.</p>
 <h4>Parameters</h4>
 <table class="vars">
-<tr><td class="var">hostname:</td><td class="explanation">De hostname voor dit account, voor in de url hostname.email-provider.nl</td></tr>
-<tr><td class="var">company[name1] <span class="required">(manditory)</span>:</td><td class="explanation">De naam van de organisatie van dit account</td></tr>
-<tr><td class="var">company[name2]:</td><td class="explanation">Extra regel voor de naam van de organisatie van dit account</td></tr>
-<tr><td class="var">user[email] <span class="required">(manditory)</span>:</td><td class="explanation">E-mailadres van de bij dit account horende gebruiker</td></tr>
-<tr><td class="var">user[sex]:</td><td class="explanation">Geslacht van de bij dit account horende gebruiker (<code>male</code> of <code>female</code>)</td></tr>
-<tr><td class="var">user[name1]:</td><td class="explanation">De voornaam van de bij dit account horende gebruiker</td></tr>
-<tr><td class="var">user[name2]:</td><td class="explanation">De achternaam van de bij dit account horende gebuiker</td></tr>
+<tr><td class="var">hostname:</td><td class="explanation">The hostname for this account, for in the url hostname.email-provider.com</td></tr>
+<tr><td class="var">company[name1] <span class="required">(mandatory)</span>:</td><td class="explanation">The name of the organization of this account</td></tr>
+<tr><td class="var">company[name2]:</td><td class="explanation">Extra line for the name of the organization of this account</td></tr>
+<tr><td class="var">user[email] <span class="required">(mandatory)</span>:</td><td class="explanation">Email address of the user associated with this account</td></tr>
+<tr><td class="var">user[sex]:</td><td class="explanation">The sex of the user associated with this account (<code>male</code> or <code>female</code>)</td></tr>
+<tr><td class="var">user[name1]:</td><td class="explanation">The first name of the user associated with this account</td></tr>
+<tr><td class="var">user[name2]:</td><td class="explanation">The last name of the user associated with this account</td></tr>
 </table>
 </td><!-- /left -->
 
 <td class="right continue">
-<h4>Definitie</h4>
+<h4>Definition</h4>
 <pre class="code">
 POST https://api.laposta.nl/v2/account
 </pre>
 
-<h4>Voorbeeld aanvraag</h4>
+<h4>Example of query</h4>
 <pre class="code">
 <? if (empty($lib) || $lib == 'curl') { ?>
 $ curl https://api.laposta.nl/v2/account \
@@ -3145,10 +3145,10 @@ $ curl https://api.laposta.nl/v2/account \
   -d user[name1]=Robin \
   '-d user[name2]=De Vries'
 <? } else if ($lib == 'php') { ?>
-Dit onderdeel is nog niet opgenomen in de php-wrapper.
+This feature has not yet been included in the php wrapper.
 <? } ?>
 </pre>
-<h4>Voorbeeld antwoord</h4>
+<h4>Example of response</h4>
 <pre class="code">
 {
     "account": {
@@ -3184,29 +3184,29 @@ Dit onderdeel is nog niet opgenomen in de php-wrapper.
 
 <tr>
 <td class="left continue">
-<h3>Account opvragen</h3>
-<p>Alle informatie over een account.</p>
+<h3>Querying an account</h3>
+<p>All information about an account.</p>
 <h4>Parameters</h4>
 <table class="vars">
-<tr><td class="var">account_id <span class="required">(manditory)</span>:</td><td class="explanation">Het id van het account</td></tr>
+<tr><td class="var">account_id <span class="required">(mandatory)</span>:</td><td class="explanation">The ID of the account</td></tr>
 </table>
 </td><!-- /left -->
 
 <td class="right continue">
-<h4>Definitie</h4>
+<h4>Definition</h4>
 <pre class="code">
 GET https://api.laposta.nl/v2/account/{account_id}
 </pre>
-<h4>Voorbeeld aanvraag</h4>
+<h4>Example of query</h4>
 <pre class="code">
 <? if (empty($lib) || $lib == 'curl') { ?>
 $ curl https://api.laposta.nl/v2/account/1EZsjcmOVT \
   -u JdMtbsMq2jqJdQZD9AHC:
 <? } else if ($lib == 'php') { ?>
-Dit onderdeel is nog niet opgenomen in de php-wrapper.
+This feature has not yet been included in the php wrapper.
 <? } ?>
 </div>
-<h4>Voorbeeld antwoord</h4>
+<h4>Example of response</h4>
 <pre class="code">
 {
     "account": {
@@ -3243,28 +3243,28 @@ Dit onderdeel is nog niet opgenomen in de php-wrapper.
 
 <tr>
 <td class="left continue">
-<h3>Alle accounts opvragen</h3>
-<p>Alle account die onder uw partnerschap vallen, in een array van account objecten. De account objecten zijn opgenomen in een array met de naam 'data'.</p>
+<h3>Querying all accounts</h3>
+<p>All account under your partnerschip in an array of account objects. The account objects have been ordered in an array with the name 'data'.</p>
 <h4>Parameters</h4>
-<p>Er hoeven geen parameters te worden meegegeven.</p>
+<p>No parameters need to be provided.</p>
 </td><!-- /left -->
 
 <td class="right continue">
-<h4>Definitie</h4>
+<h4>Definition</h4>
 <pre class="code">
 GET https://api.laposta.nl/v2/account
 </pre>
 
-<h4>Voorbeeld aanvraag</h4>
+<h4>Example of query</h4>
 <pre class="code">
 <? if (empty($lib) || $lib == 'curl') { ?>
 $ curl https://api.laposta.nl/v2/account \
   -u JdMtbsMq2jqJdQZD9AHC:
 <? } else if ($lib == 'php') { ?>
-Dit onderdeel is nog niet opgenomen in de php-wrapper.
+This feature has not yet been included in the php wrapper.
 <? } ?>
 </pre>
-<h4>Voorbeeld antwoord</h4>
+<h4>Example of response</h4>
 <pre class="code">
 {
     "data": [
@@ -3338,26 +3338,26 @@ Dit onderdeel is nog niet opgenomen in de php-wrapper.
 <tr>
 <td class="left">
 <a id="login"></a>
-<h2>Inloggen</h2>
-<p>Partners die white-label klanten hebben kunnen gebruik maken van ons generieke aanmeldformulier op login.email-provider.nl. Veel partners vinden het echter prettiger een eigen formulier aan te kunnen bieden. Via onze api is dat mogelijk; de login-gegevens uit het formulier kunnen naar ons systeem gestuurd worden, waarna ofwel een foutmelding volgt (als de gegevens niet correct waren), ofwel een login-url. Deze url kunt u tijdelijk gebruiken om uw klant door te sturen, waarmee deze automatisch ingelogd wordt.</p>
-<p>Het controleren van logins is alleen beschikbaar voor white-label partners.</p>
-<p><i>Dit deel van de API is alleen via https te gebruiken.</i></p>
+<h2>Logging in</h2>
+<p>Partners who have white-label clients can use our generic sign-up form at login.email-provider.nl. However, many partners prefer to be able to offer their own form. Fortunately, this is possible through our API; the login data from the form can be sent to our system, after which either an error message follows (if the data was incorrect), or a login URL follows. You can temporarily use this URL to redirect your customer, which automatically logs them in.</p>
+<p>Monitoring logins is only available to white-label partners.</p>
+<p><i>This part of the API can only be used using https.</i></p>
 </td><!-- /left -->
 
 <td class="right">
-<h2>URL patronen</h2>
+<h2>URL patterns</h2>
 <ul class="code">
 <li>/v2/login</li>
 </ul>
 <br>
-<h2>Overzicht codes in foutmelding</h2>
-<p>Om makkelijk om te kunnen gaan met de diverse fouten die kunnen optreden bij het inloggen worden de volgende codes gebruikt:
+<h2>Overview of codes in error messages</h2>
+<p>In order to more efficiently deal with the various errors that might occur when logging in, the following codes are used:</p>
 <table class="list">
-<tr><td class="l">301</td><td class="explanation">Deze login bestaat niet</td></tr>
-<tr><td class="l">302</td><td class="explanation">Het wachtwoord is niet correct</td></tr>
-<tr><td class="l">303</td><td class="explanation">Deze gebruiker mag niet (meer) inloggen</td></tr>
-<tr><td class="l">304</td><td class="explanation">Dit account mag niet (meer) inloggen</td></tr>
-<tr><td class="l">305</td><td class="explanation">Dit account is niet bevestigd</td></tr>
+<tr><td class="l">301</td><td class="explanation">This login does not exist</td></tr>
+<tr><td class="l">302</td><td class="explanation">The password entered is incorrect</td></tr>
+<tr><td class="l">303</td><td class="explanation">This user is not (or no longer) allowed to log in</td></tr>
+<tr><td class="l">304</td><td class="explanation">This account is not (or no longer) allowed to log in</td></tr>
+<tr><td class="l">305</td><td class="explanation">This account has not been verified</td></tr>
 </table>
 
 </td><!-- /right -->
@@ -3365,23 +3365,23 @@ Dit onderdeel is nog niet opgenomen in de php-wrapper.
 
 <tr>
 <td class="left continue">
-<h3>Logingegevens controleren</h3>
-<p>Als de gegevens kloppen, dan volgt het login object met de login-url. Deze url is 1 uur geldig. Als inloggen niet mogelijk is, dan staat in de foutmelding de reden. Deze melding kunt u gebruiken om aan de invuller van het formulier te laten zien.</p>
-<p>Voor de volledigheid wordt ook de API key van het account meegegeven.</p>
+<h3>Verifying login details</h3>
+<p>If the data is correct, then the login object follows with the login URL. This URL is valid for 1 hour. If logging in is not possible, the error message will state the reason. You may show this message to the person who has filled out the form.</p>
+<p>For the sake of completeness, the API key of the account is also included.</p>
 <h4>Parameters</h4>
 <table class="vars">
-<tr><td class="var">login:</td><td class="explanation">De login</td></tr>
-<tr><td class="var">password:</td><td class="explanation">Het wachtwoord</td></tr>
+<tr><td class="var">login:</td><td class="explanation">The login</td></tr>
+<tr><td class="var">password:</td><td class="explanation">The password</td></tr>
 </table>
 </td><!-- /left -->
 
 <td class="right continue">
-<h4>Definitie</h4>
+<h4>Definition</h4>
 <pre class="code">
 GET https://api.laposta.nl/v2/login
 </pre>
 
-<h4>Voorbeeld aanvraag</h4>
+<h4>Example of query</h4>
 <pre class="code">
 <? if (empty($lib) || $lib == 'curl') { ?>
 $ curl https://api.laposta.nl/v2/login?login=<?= urlencode('maartje@example.nl') ?>&password=1h2moooRTTR2 \
@@ -3394,7 +3394,7 @@ $url = $result['login']['url'];
 </pre>
 <? } ?>
 </pre>
-<h4>Voorbeeld antwoord</h4>
+<h4>Example of response</h4>
 <pre class="code">
 {
     "login": {
