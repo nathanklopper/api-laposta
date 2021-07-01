@@ -1,0 +1,75 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="nl" lang="nl">
+
+<head>
+<title>Laposta API Documentation - Libraries</title>
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<link rel="stylesheet" href="../assets/130402/css/normalize.css" type="text/css" />
+<link rel="stylesheet" href="../assets/130402/css/api.css" type="text/css" />
+<link rel="shortcut icon" href="../assets/static/img/favicon.ico" />
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.0/jquery.min.js"></script>
+<script>
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-23294879-1']);
+  _gaq.push(['_setDomainName', '.laposta.nl']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+function generate_address(username, domain) {
+        var atsign = "&#64;";
+        var addr = username + atsign + domain;
+        document.write( "<" + "a" + " " + "href=" + "mail" + "to:" + addr + ">" + addr + "<\/a>");
+}
+</script>
+</head>
+
+<body>
+<div id="container">
+<div id="header">
+<ul id="nav">
+	<li><a href="../index.html">Return to Documentation</a><li>
+</ul>
+<ul id="links">
+	<li><a class="login" href="https://login.laposta.nl/">Login</a><li>
+	<li class="sep">|</li>
+	<li><a href="http://www.laposta.nl/contact">Contact</a><li>
+</ul>
+</div><!-- /header -->
+
+<table class="content">
+
+<!-- into -->
+<tr>
+<td class="left first">
+<a id="home" href="http://www.laposta.nl/"><img src="../assets/static/img/logo_120.png" width="120" height="40" alt="Laposta - gemakkelijk nieuwsbrieven versturen" /></a>
+<h2>Working with a library</h2>
+<p>The API has been set up to be as accessible as possible, but working with a library is often easier. On this page, you can find the currently available libraries.</p>
+<p>Would you like to use a library in a different language? We could potentially set this up for you. Please email us at <a href="mailto:api@laposta.nl">api@laposta.nl</a>.</p>
+</td><!-- /left -->
+
+<td class="right first">
+<h2>PHP</h2>
+<p>The code for our easy-to-use PHP wrapper is available on <a href="https://github.com/laposta/laposta-api-php">Github</a>.</p><p>The library contains a folder with examples. Please also refer to <a href="../index%EF%B9%96lib=php.html">the documentation</a> for examples in php.</p>
+
+<h2>.NET (C#)</h2>
+<p>The code for our easy-to-use .NET wrapper is available on <a href="https://github.com/laposta/laposta-api-dotnet">Github</a>.</p><p>This is a Visual Studio solution, compatible with Visual Studio versions 2008 up to and including 2012. The project contains a folder with examples. Please also refer to <a href="../index%EF%B9%96lib=dotnet.html">the documentation</a> for examples in .NET.</p>
+</td><!-- /right -->
+</tr>
+</table>
+</div><!-- /container -->
+<!-- Mtrack V2.1.2 -->
+<script>
+var _Mpage = '';
+var _Mclickouts = 1;
+var _Mdownloads = 1;
+</script>
+<script>document.write(unescape('%3Cscript src="http'+((document.location.protocol=='https:')?'s':'')+'://mtrack.nl/js/v2.js?c=emmycat&amp;s=laposta8269&amp;v=2.1" defer="defer" type="text/javascript"%3E%3C/script%3E'));</script>
+<!-- End Mtrack -->
+</body>
+</html>
